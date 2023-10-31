@@ -11,7 +11,6 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [birth, setBirth] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -33,9 +32,6 @@ const Register = () => {
     setName(e.target.value);
   };
 
-  const handleBirthChange = (e) => {
-    setBirth(e.target.value);
-  };
   // 에러 메시지 컴포넌트
   
   const ErrorMessage = ({ message }) => {
@@ -122,11 +118,6 @@ const Register = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
                   {/* 에러 메시지 표시 */}
                   {errorMessage && <ErrorMessage message={errorMessage} />}
-                </div>
-                <div>
-                  <label htmlFor="birth" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">생년월일</label>
-                  <input type="text" name="birth" id="birth" value={birth} onChange={handleBirthChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="ex) 010123" required="" />
                 </div>
                 <div className="flex items-start">
                   <div className="flex items-center h-5">

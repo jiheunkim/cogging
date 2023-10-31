@@ -54,6 +54,7 @@ function Navbar() {
 
     // 로그인 버튼 클릭 시 이벤트 핸들러
     const handleLoginButtonClick = () => {
+      navigate("/sign-up");
     //   if (loggedIn) {
     //     signOut(auth) // Firebase Authentication에서 로그아웃
     //       .then(() => {

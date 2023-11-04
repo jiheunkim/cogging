@@ -8,6 +8,9 @@ import Mypage from './components/pages/Mypage';
 import SignUp from './components/pages/SignUp';
 import Register from './components/pages/Register';
 import Community from './components/pages/Community';
+import PloggingWrite from './components/pages/PloggingWrite/body';
+import ReviewWrite from './components/pages/ReviewWrite/body';
+import CommunityWrite from './components/pages/CommunityWrite/body';
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/plogging-write" element={<PloggingWrite/>} />
+        <Route path="/review-write" element={<ReviewWrite/>}/>
+        <Route path="/community-write" element={<CommunityWrite/>}/>
       </Routes>
     </BrowserRouter>
   );

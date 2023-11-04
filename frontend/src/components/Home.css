@@ -1,0 +1,13 @@
+.kakaomap {
+    position: relative;
+  }
+  
+  .place-card-container {
+    position: absolute;
+    top: 110px; /* 원하는 Y 좌표 값 설정 */
+    left: 25px; /* 원하는 X 좌표 값 설정 */
+    width: 380px;
+    height: auto;
+    max-height: 1000px;
+    z-index: 10;
+  }

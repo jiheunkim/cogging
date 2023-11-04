@@ -33,7 +33,7 @@ export const Word = styled.div`
 
 export const PostButton = styled.button`
     border: none;
-    background-color:#00FF00;
+    background-color:#38A800;
     color: white;
     height: 35%;
     width: 120px;
@@ -81,9 +81,7 @@ export const Time = styled.div`
 `
 
     
-export const Timeinput = styled.input`
-    border: solid 2px #cccccc;
-    border-radius: 10px;
+export const Timeinput = styled.div`
     height: 40px;
     margin: 2% 2% 2% 0%;
 `
@@ -93,6 +91,7 @@ export const Peopleinput = styled.input`
     border-radius: 10px;
     height: 40px;
     margin: 2% 2% 2% 0%;
+    padding-left: 20px;
 `
 
 export const Chatinput = styled.input`
@@ -100,6 +99,8 @@ export const Chatinput = styled.input`
     border-radius: 10px;
     height: 40px;
     margin: 2% 2% 2% 0%;
+    padding-left: 20px;
+
 `
 
 export const Place = styled.div`
@@ -110,8 +111,14 @@ export const Place = styled.div`
 `
 
 export const Placename = styled.div`
+    display: flex;
     height: 80px;
     padding-top: 20px;
+`
+
+export const Icon = styled.div`
+    color: #ffd600;
+    margin-right: 10px;
 `
 
 export const Placeinputs = styled.div`

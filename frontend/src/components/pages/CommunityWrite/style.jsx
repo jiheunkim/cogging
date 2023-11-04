@@ -33,7 +33,7 @@ export const Word = styled.div`
 
 export const PostButton = styled.button`
     border: none;
-    background-color:#00FF00;
+    background-color:#38A800;
     color: white;
     height: 35%;
     width: 120px;

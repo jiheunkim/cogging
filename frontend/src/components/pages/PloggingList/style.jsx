@@ -17,18 +17,10 @@ export const Container = styled.div`
 
 export const Title = styled.div`
     display: flex;
-    border-bottom: solid #cccccc;
     height: 100px;
     width: 100%;
     justify-content: space-between;
-    
-     
-`
-
-export const Word = styled.div`
-    font-size: 25px;
-    align-self: flex-end;
-    margin: 5px;
+    margin-bottom: 20px;
 `
 
 export const PostButton = styled.button`
@@ -56,28 +48,61 @@ export const Info = styled.div`
     flex-direction: column;
 `
 
-export const Titleinput = styled.input`
+export const Switch  = styled.div`
+    width: 170px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+`
+
+export const Plogging1 = styled.div`
+    border-bottom: solid 2px #38A800;
+    width: 50%;
+    cursor: pointer;
+    color: #38A800;
+    font-weight: bolder;
+`
+
+export const Review1 = styled.div`
+    border-bottom: solid 2px #cccccc;
+    width: 50%;
+    cursor: pointer;
+`
+export const Plogging2 = styled.div`
+    border-bottom: solid 2px #cccccc;
+    width: 50%;
+    cursor: pointer;
+
+`
+
+export const Review2 = styled.div`
+    border-bottom: solid 2px #38A800;
+    width: 50%;
+    cursor: pointer;
+    color: #38A800;
+    font-weight: bolder;
+
+`
+
+export const Lists = styled.div`
     border: solid 2px #cccccc;
     border-radius: 10px;
     //width: 100%;
-    height: 60px;
-    padding-left: 20px;
-    margin: 2% 0% 2% 0%;
+    height: 150px;
+    padding: 20px;
 
 `
-export const Maininput = styled.input`
-    border: solid 2px #cccccc;
-    border-radius: 10px;
-    height: 250px;
-    margin: 2% 0% 2% 0%;
-    padding-left: 20px;
-    padding-bottom: 200px;
-`
+
 
 export const Placename = styled.div`
     display: flex;
     height: 80px;
-    padding-top: 20px;
+    padding-top: 30px;
+    font-size: 20px;
+    align-self: flex-end;
+
 `
 
 export const Icon = styled.div`

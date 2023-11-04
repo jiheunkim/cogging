@@ -78,7 +78,11 @@ function Navbar() {
             <div className="navbar-container">
               {/* 모바일버전에서 클릭하면 메뉴 보이도록 설정하는 것도 한다. (close Mobile Menu)는 다시 버튼 누르면 없어지고 생기고 하도록 한다. */}
               <Link to="/" className={`navbar-logo ${activeLink === 'home' ? 'active' : ''}`} onClick={() => handleLinkClick('home')}>
-                LOGO
+                <img
+                  className="mr-1 h-6 sm:h-7"
+                  alt='logo'
+                  src="/image/logo.png"
+                />
               </Link>
               <div className="menu-icon" onClick={handleClick}>
                 <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -91,6 +95,15 @@ function Navbar() {
                     onClick={() => handleLinkClick('community')}
                   >
                     커뮤니티
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    to="/community"
+                    className={`nav-links ${activeLink === 'community' ? 'active' : ''}`}
+                    onClick={() => handleLinkClick('community')}
+                  >
+                    랭킹
                   </Link>
                 </li>
                 <li className="nav-item">

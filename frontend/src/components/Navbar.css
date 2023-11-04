@@ -1,7 +1,7 @@
 .navbar {
     background: #fff;
     box-shadow: 0px 4px 4px 0px rgb(179, 179, 179);
-    height: 60px;
+    height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,9 +25,6 @@
     margin-left: 100px;
     cursor: pointer;
     text-decoration: none;
-    padding-top: 3px;
-    font-size: 1.5rem;
-    font-family: 'Hammersmith One', sans-serif;
     display: flex;
     align-items: center;
   }
@@ -38,22 +35,25 @@
     grid-gap: 10px;
     list-style: none;
     text-align: center;
-    margin-left: 20px;
+    margin-left: 70px;
     width: 60vw;
     justify-content: start;
   }
   
   .nav-item {
-    height: 55px;
+    height: 70px;
   }
   
   .nav-links {
     color: #6C6C6C;
     display: flex;
     align-items: center;
-    font-size: 16px;
+    margin-top: 3px;
+    font-size: 17px;
+    font-family: 'PretendardVariable';
+    font-weight: 500;
     text-decoration: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.5rem;
     height: 100%;
   }
   
@@ -103,7 +103,7 @@
       width: 100%;
       height: 110vh;
       position: absolute;
-      top: 55px;
+      top: 70px;
       left: -100%;
       opacity: 1;
       transition: all 0.5s ease;
@@ -138,7 +138,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      transform: translate(20%, 30%);
+      transform: translate(20%, 75%);
     }
   
     .menu-icon {
@@ -146,7 +146,7 @@
       position: absolute;
       top: 0;
       right: 0;
-      transform: translate(-100%, 50%);
+      transform: translate(-100%, 75%);
       font-size: 1.3rem;
       cursor: pointer;
     }

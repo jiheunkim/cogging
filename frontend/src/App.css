@@ -105,17 +105,11 @@
   font-size: 2rem;
 }
 
-.login-google {
-  display: inherit;
-  position: relative;
-  width: 7%;
-  height: 5vh;
-  object-fit: contain;
-  z-index: 1;
+.main-font {
+  font-family: 'PretendardVariable';
 }
 
-.login-google-text {
-  font-family: 'Roboto', sans-serif;
-  margin-left: 24px !important;
-  align-items: center;
+.register-box-container {
+  max-width: 500px; /* 원하는 최대 가로 길이로 조정 */
+  margin: 0 auto; /* 중앙 정렬을 위해 좌우 여백 자동 조정 */
 }

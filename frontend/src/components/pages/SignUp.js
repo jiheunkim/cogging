@@ -26,8 +26,8 @@ const SignUp = () => {
 
     try {
       if (email.trim() !== '' && password.trim() !== '') {
-        const response = await axios.post('/login', {
-          username: email,
+        const response = await axios.post('http://localhost:8080/api/members/login', {
+          email: email,
           password: password,
         });
 
@@ -46,6 +46,7 @@ const SignUp = () => {
 
   return (
     <>
+    <div className='main-font'>
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <div className="w-full bg-white rounded-lg md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -110,6 +111,7 @@ const SignUp = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   </>
   );

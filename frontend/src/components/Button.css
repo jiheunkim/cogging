@@ -1,0 +1,22 @@
+.button-style {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-radius: 0.5rem;
+    background-color: #1CC500;
+    padding: 0.7rem 1rem;
+    font-family: 'PretendardVariable';
+    font-size: 18px;
+    font-weight: 600; 
+    line-height: 1.5;
+    color: #ededed;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    transition: color 0.2s, font-weight 0.2s;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+  }
+  
+  .button-style:hover {
+    color: #fff;
+    font-weight: 700;
+  }

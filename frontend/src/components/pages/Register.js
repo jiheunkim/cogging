@@ -11,6 +11,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [nickname, setNickname] = useState('');
   const [checkedPassword, setCheckedPassword] = useState('');
+  const [profile, setProfile] = useState(1);
   const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
@@ -29,6 +30,10 @@ const Register = () => {
 
   const handleNameChange = (e) => {
     setNickname(e.target.value);
+  };
+
+  const handleProfileImageSelect = (imageNumber) => {
+    setProfile(imageNumber);
   };
 
   // 에러 메시지 컴포넌트
@@ -55,7 +60,7 @@ const Register = () => {
         email: email,
         password: password,
         nickname: nickname,
-        checkedPassword: checkedPassword,
+        profile: profile,
       };
 
       // 회원가입 요청 보내기
@@ -76,7 +81,7 @@ const Register = () => {
   return (
     <>
     <div className='main-font'>
-    <section className="bg-gray-200 dark:bg-gray-900">
+    <section className="bg-white dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="register-box-container w-full bg-white rounded-lg md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -102,11 +107,11 @@ const Register = () => {
               <br></br>
               <div>
                 <label htmlFor="profile" className="block mb-4 text-m font-medium text-gray-900 dark:text-white">프로필 선택</label>
-                <div className='flex justify-center ml-1 mr-1'>
+                {/* <div className='flex justify-center ml-1 mr-1'>
                   <img
                     className="mx-auto w-1/5 mr-1"
                     alt='profile_1'
-                    src="/image/profile_1.png"
+                    src="/image/profile_1_select.png"
                   />
                   <img
                     className="mx-auto w-1/5 mr-1"
@@ -116,18 +121,30 @@ const Register = () => {
                   <img
                     className="mx-auto w-1/5 mr-1"
                     alt='profile_3'
-                    src="/image/profile_2.png"
+                    src="/image/profile_3.png"
                   />
                   <img
                     className="mx-auto w-1/5 mr-1"
                     alt='profile_4'
-                    src="/image/profile_2.png"
+                    src="/image/profile_4.png"
                   />
                   <img
                     className="mx-auto w-1/5"
                     alt='profile_5'
                     src="/image/profile_5.png"
                   />
+                </div> */}
+                <div className='flex justify-center ml-1 mr-1'>
+                  {Array.from({ length: 5 }, (_, index) => (
+                    <img
+                      key={index}
+                      className={`mx-auto w-1/5 mr-1 ${profile === index + 1 ? '' : ''}`}
+                      alt={`profile_${index + 1}`}
+                      src={`/image/profile_${index + 1}${profile === index + 1 ? '_select' : ''}.png`}
+                      onClick={() => handleProfileImageSelect(index + 1)}
+                    />
+                  )
+                  )}
                 </div>
                 <br></br>
               </div>

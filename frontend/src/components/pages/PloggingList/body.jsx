@@ -76,7 +76,7 @@ const PloggingList = () => {
     // },[])
 
     return (
-        <div>
+        <div className='main-font'>
             {isplogging ? (
                 <Container >
                     <Title>

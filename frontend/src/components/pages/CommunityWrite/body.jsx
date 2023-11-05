@@ -57,7 +57,7 @@ const CommunityWrite = () => {
     
 
     return (
-        <Container >
+        <Container className='main-font'>
             <Title>
                 <Word>커뮤니티</Word>
                 <PostButton>글 올리기</PostButton>

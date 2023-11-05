@@ -56,7 +56,7 @@ const Reviewwrite = () => {
     // },[])
 
     return (
-        <Container >
+        <Container className='main-font'>
             <Title>
                 <Word>장소후기</Word>
                 <PostButton>글 올리기</PostButton>

@@ -4,23 +4,23 @@ import '../../../App.css';
 import {
     Container, Title, Word, Content, PostButton, Titleinput,
     Info, Place, Maininput, Timeinput, Peopleinput, Chatinput, Placename, Placeinputs,
-    Startinput, Finishinput
+    Startinput, Finishinput, MaxLengthText, MainTextarea
 } from "./style";
 
 
 
 
 const CommunityWrite = () => {
-    const [title, setTitle] = useState("")
-    const [content, setContent] = useState("")
-    const [userData,setUserData] = useState([]);
+    const [comtitle, setComtitle] = useState("")
+    const [comcontent, setComcontent] = useState("")
+    const [userData, setUserData] = useState([]);
 
-    
+
     // const postfeed = async () => {
     //     try {
     //         const response = await Api.post('',{
-    //             : title,
-    //             : content 
+    //             title : comtitle,
+    //             content : comcontent 
     //         });
     //         console.log(response.data);
     //         alert('게시되었습니다.');
@@ -28,7 +28,7 @@ const CommunityWrite = () => {
     //         alert('업로드에 실패했습니다.')
     //         console.error(error)
     //     }
-        
+
     // };
 
     // const getUser = async () => {
@@ -42,19 +42,19 @@ const CommunityWrite = () => {
     //             console.error(error);   
     //         }
     //     }
-    
+
     const onChangeTitle = (e) => {
-        setTitle(e.target.value)
+        setComtitle(e.target.value)
     }
 
     const onChangeContent = (e) => {
-        setContent(e.target.value)
+        setComcontent(e.target.value)
     }
 
     // useEffect(() => {
     //     getUser();
     // },[])
-    
+
 
     return (
         <Container className='main-font'>
@@ -66,14 +66,17 @@ const CommunityWrite = () => {
                 <Info>
                     <Titleinput
                         placeholder='제목을 입력하세요.'
-                        value={title}
+                        value={comtitle}
                         onChange={onChangeTitle}
                     />
-                    <Maininput
-                        placeholder='내용을 입력하세요.'
-                        value={content}
-                        onChange={onChangeContent}
-                    />
+                    <MainTextarea>
+                        <Maininput
+                            placeholder='내용을 입력하세요.'
+                            value={comcontent}
+                            onChange={onChangeContent}
+                        />
+                        <MaxLengthText>최대 300자</MaxLengthText>
+                    </MainTextarea>
                 </Info>
             </Content>
         </Container>

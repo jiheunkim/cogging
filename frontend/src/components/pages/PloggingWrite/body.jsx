@@ -28,10 +28,11 @@ const PloggingWrite = () => {
   const [start, setStart] = useState("")
   const [finish, setFinish] = useState("")
   const [userData, setUserData] = useState([]);
+  const [date, setDate] = useState([]);
 
 
 
-  //   const postfeed = asynccons () => {
+  //   const postfeed = async () => {
   //     try {
   //         const response = await Api.post('',{
   //             : title,
@@ -62,6 +63,20 @@ const PloggingWrite = () => {
   //             console.error(error);   
   //         }
   //     }
+
+  // const onClickbtn = (year) => {
+  //   console.log(date);
+  //   setDate(year)
+  // }
+
+  const onClickbtn = (year, month, day) => {
+    const newDate = new Date(year, month - 1, day); // Month starts from 0 (January)
+    console.log(newDate); // Output the new Date object
+  
+    // Now, you can set this newDate as your 'date' state using 'setDate'
+    setDate(newDate);
+  }
+
   const onChangeTitle = (e) => {
     setTitle(e.target.value)
   }
@@ -85,10 +100,10 @@ const PloggingWrite = () => {
     setDay(selectedValue); // 선택된 값을 상태에 저장
   };
 
-  const onChangeampm = (e) => {
-    const selectedValue = e.target.value; // 선택된 값
-    setAmpm(selectedValue); // 선택된 값을 상태에 저장
-  };
+  // const onChangeampm = (e) => {
+  //   const selectedValue = e.target.value; // 선택된 값
+  //   setAmpm(selectedValue); // 선택된 값을 상태에 저장
+  // };
 
   const onChangetime = (e) => {
     const selectedValue = e.target.value; // 선택된 값
@@ -115,7 +130,7 @@ const PloggingWrite = () => {
     <Container className='main-font'>
       <Title>
         <Word>같이줍깅</Word>
-        <PostButton>글 올리기</PostButton>
+        <PostButton onClick={onClickbtn}>글 올리기</PostButton>
       </Title>
       <Content>
         <Info>
@@ -152,14 +167,14 @@ const PloggingWrite = () => {
                 <option key={index + 1} value={index + 1}>{`${index + 1}일`}</option>
               ))}
             </select>
-            <select onChange={onChangeampm} id="ampm">
+            {/* <select onChange={onChangeampm} id="ampm">
               <option value="" disabled selected hidden>오전/오후</option>
               <option value={"am"}>오전</option>
               <option value={"pm"}>오후</option>
-            </select>
+            </select> */}
             <select onChange={onChangetime} id="time">
               <option value="" disabled selected hidden>시</option>
-              {[...Array(12)].map((_, index) => (
+              {[...Array(24)].map((_, index) => (
                 <option key={index + 1} value={index + 1}>{`${index + 1}시`}</option>
               ))}
             </select>

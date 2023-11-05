@@ -90,7 +90,7 @@ function Navbar() {
               <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                 <li className="nav-item">
                   <Link
-                    to="/community"
+                    to="/community-list"
                     className={`nav-links ${activeLink === 'community' ? 'active' : ''}`}
                     onClick={() => handleLinkClick('community')}
                   >

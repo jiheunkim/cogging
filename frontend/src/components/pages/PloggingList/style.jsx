@@ -25,7 +25,7 @@ export const Title = styled.div`
 
 export const PostButton = styled.button`
     border: none;
-    background-color:#38A800;
+    background-color:#38AF00;
     color: white;
     height: 35%;
     width: 120px;

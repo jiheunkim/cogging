@@ -112,7 +112,7 @@ const PloggingWrite = () => {
 
 
   return (
-    <Container >
+    <Container className='main-font'>
       <Title>
         <Word>같이줍깅</Word>
         <PostButton>글 올리기</PostButton>
@@ -130,7 +130,7 @@ const PloggingWrite = () => {
             onChange={onChangeContent}
           />
           <div>
-            <FontAwesomeIcon icon={faClock} style={{ color: "38A800", marginRight: "10px" }} />
+            <FontAwesomeIcon icon={faClock} style={{ color: "38AF00", marginRight: "10px" }} />
             일시
           </div>
           <Timeinput>
@@ -167,7 +167,7 @@ const PloggingWrite = () => {
 
 
           <div>
-            <FontAwesomeIcon icon={faUser} style={{ color: "38A800", marginRight: "10px" }} />
+            <FontAwesomeIcon icon={faUser} style={{ color: "38AF00", marginRight: "10px" }} />
             최대 가능 인원
           </div>
           <Peopleinput
@@ -175,7 +175,7 @@ const PloggingWrite = () => {
             onChange={onChangeNumber}
           />
           <div>
-            <FontAwesomeIcon icon={faComment} style={{ color: "38A800", marginRight: "10px" }} />
+            <FontAwesomeIcon icon={faComment} style={{ color: "38AF00", marginRight: "10px" }} />
             오픈채팅 링크
           </div>
           <Chatinput

@@ -58,10 +58,10 @@ export const Switch  = styled.div`
 `
 
 export const Plogging1 = styled.div`
-    border-bottom: solid 2px #38A800;
+    border-bottom: solid 2px #38AF00;
     width: 50%;
     cursor: pointer;
-    color: #38A800;
+    color: #38AF00;
     font-weight: bolder;
 `
 
@@ -78,7 +78,7 @@ export const Plogging2 = styled.div`
 `
 
 export const Review2 = styled.div`
-    border-bottom: solid 2px #38A800;
+    border-bottom: solid 2px #38AF00;
     width: 50%;
     cursor: pointer;
     color: #38A800;

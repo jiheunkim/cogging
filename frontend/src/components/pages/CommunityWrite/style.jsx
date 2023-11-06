@@ -29,6 +29,7 @@ export const Word = styled.div`
     font-size: 25px;
     align-self: flex-end;
     margin: 5px;
+    font-weight: bold;
 `
 
 export const PostButton = styled.button`
@@ -63,6 +64,8 @@ export const Titleinput = styled.input`
     height: 60px;
     padding-left: 20px;
     margin: 2% 0% 2% 0%;
+    outline: none;
+
 
 `
 export const Maininput = styled.textarea.attrs({ maxLength: 300 })`
@@ -76,6 +79,8 @@ export const Maininput = styled.textarea.attrs({ maxLength: 300 })`
     word-wrap: break-word; /* 긴 단어 줄 바꿈 */
     overflow-wrap: break-word; /* word-wrap 대체 구문 */
     resize: none; /* 크기 조정 비활성화 */
+    outline: none;
+
 `
 
 export const Placename = styled.div`

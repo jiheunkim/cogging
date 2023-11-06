@@ -2,21 +2,24 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../../App.css';
 import {
-    Container, Title, Content, PostButton, Liststitle, Listscontent,
-    Info, Placename, Word
+    Container, Title, Content, PostButton, Liststitle, Listscontent, Listsbottom,
+    Info, Placename, Word, Commentnum, Date
 } from "./style";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faComment } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 
 
 
-const PloggingList = () => {
-    const [title, setTitle] = useState("")
-    const [content, setContent] = useState("")
+const CommunityList = () => {
+    const [title, setTitle] = useState("커뮤니티 글 제목")
+    const [content, setContent] = useState("커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용커뮤니티 글 내용 커뮤니티 글 내용커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용")
     const [userData, setUserData] = useState([]);
     const [isplogging, setIsplogging] = useState(true);
     const navigate = useNavigate();
+    const [showFullContent, setShowFullContent] = useState(false); // 추가
+
 
 
     const navigateToWrite = () => {
@@ -66,7 +69,8 @@ const PloggingList = () => {
         setIsplogging(false)
     }
 
-    console.log(isplogging)
+    const limitedContent = content.length > 100 ? `${content.slice(0, 200)}...더 보기` : content; // 100자로 제한
+
     // useEffect(() => {
     //     getUser();
     // },[])
@@ -78,13 +82,27 @@ const PloggingList = () => {
                     <Word>커뮤니티</Word>
                     <PostButton onClick={navigateToWrite}>글쓰기</PostButton>
                 </Title>
-                <Content>
-                    <Liststitle>커뮤니티 글 제목</Liststitle>
-                </Content>
+                < Link to='/community-feed'>
+                    <Content>
+                        <Liststitle>{title}</Liststitle>
+                        <Listscontent>
+                            {showFullContent ? content : limitedContent}
+                        </Listscontent>
+                        <Listsbottom>
+                            <Commentnum>
+                                <FontAwesomeIcon icon={faComment} style={{ color: "38AF00", marginRight: "5px", marginTop: "3px" }} />
+                                <div>개수</div>
+                            </Commentnum>
+                            <Date>
+                                날짜
+                            </Date>
+                        </Listsbottom>
+                    </Content>
+                </Link>
             </Container>
         </div>
 
     );
 }
 
-export default PloggingList;
+export default CommunityList;

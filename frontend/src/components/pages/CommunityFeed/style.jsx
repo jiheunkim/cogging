@@ -16,12 +16,13 @@ export const Container = styled.div`
 
 export const Title = styled.div`
     display: flex;
-    height: 100px;
+    height: 80px;
     width: 100%;
     justify-content: space-between;
     margin-bottom: 20px;
     flex-direction: row;
     padding-right: 10px;
+    padding-top: 50px;
 `
 
 export const Word = styled.div`
@@ -31,11 +32,11 @@ export const Word = styled.div`
 
 
 export const Content = styled.div`
-    //height: 85%;
+    /* height: 85%; */
     display: flex;
     width: 100%;
     flex-direction: column;
-    height: 240px;
+    /* height: 240px; */
 `
 
 export const Liststitle = styled.div`
@@ -52,8 +53,8 @@ export const Listscontent = styled.div`
     //width: 100%;
     /* height: 150px; */
     font-size: 12px;
-    height: 150px;
-    padding: 10px 0px 0px 0px;
+    /* height: 150px; */
+    padding: 10px 0px 50px 0px;
 
 `
 
@@ -101,5 +102,40 @@ export const Commentinput = styled.div`
     background-color: #EEEEEE;
     height: 50px;
     margin-top: 20px;
+    margin-bottom: 30px;
     border-radius: 10px;
+`
+export const Comments = styled.div`
+    
+`
+
+export const Comtitle = styled.div`
+    display: flex;
+    height: 50px;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-direction: row;
+    padding-right: 10px;
+    padding-top: 20px;
+`
+
+export const Comdate = styled.div`
+    height: 16px;
+    color: #999999;
+`
+
+export const Comcontent = styled.div`
+    display: flex;
+    width: 100%;
+    font-size: 12px;
+    height: 60px;
+    padding: 10px 0px 0px 0px;
+
+`
+
+export const Profile = styled.img`
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
 `

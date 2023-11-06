@@ -52,17 +52,14 @@ export const Content = styled.div`
     border: solid 2px #cccccc;
     border-radius: 10px;
     margin: 2% 0% 0% 0%;
-    height: 160px;
+    height: 180px;
     cursor: pointer;
-
-
-
 `
 
 export const Liststitle = styled.div`
     display: flex;
     width: 100%;
-    padding: 20px 20px 0px 20px;
+    padding: 20px 30px 0px 30px;
     font-size: 17px;
     height: 50px;
     font-weight: bold
@@ -74,14 +71,14 @@ export const Listscontent = styled.div`
     /* height: 150px; */
     font-size: 12px;
     height: 70px;
-    padding: 10px 20px 0px 20px;
-
+    padding: 10px 30px 0px 30px;
+    
 `
 
 export const Listsbottom = styled.div`
     display: flex;
     width: 100%;
-    padding: 10px 20px 0px 20px;
+    padding: 25px 30px 0px 30px;
     height: 40px;
     font-size: 12px;
     flex-direction: row;

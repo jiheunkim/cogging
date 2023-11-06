@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../../App.css';
 import {
-    Container, Title, Content, Liststitle, Listscontent, Listsbottom,
-    Info, Placename, Word, Commentnum, Date, Commentbox, Commentinput
+    Container, Title, Content, Liststitle, Listscontent, Listsbottom, Comcontent,
+    Comdate, Comtitle, Word, Commentnum, Date, Commentbox, Commentinput, Comments, Profile
 } from "./style";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
+import profile from "../../profile.jpg";
 
 
 
@@ -16,7 +17,9 @@ import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 
 const CommunityFeed = () => {
     const [title, setTitle] = useState("커뮤니티 글 제목")
-    const [content, setContent] = useState("커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용커뮤니티 글 내용 커뮤니티 글 내용커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용커뮤니티 글 내용 커뮤니티 글 내용커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용")
+    const content = "커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용커뮤니티 글 내용 커뮤니티 글 내용커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용커뮤니티 글 내용 커뮤니티 글 내용커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용 커뮤니티 글 내용"
+    const [comment, setComment] = useState("")
+    const newcomment = "댓글이 달리면 이렇게 보입니덩 댓글이 달리면 이렇게 보입니덩 댓글이 달리면 이렇게 보입니덩 댓글이 달리면 이렇게 보입니덩"
     const [userData, setUserData] = useState([]);
     const [isplogging, setIsplogging] = useState(true);
     const navigate = useNavigate();
@@ -55,20 +58,9 @@ const CommunityFeed = () => {
     //         }
     //     }
 
-    const onChangeTitle = (e) => {
-        setTitle(e.target.value)
-    }
-
-    const onChangeContent = (e) => {
-        setContent(e.target.value)
-    }
-
-    const onClickPlogging = () => {
-        setIsplogging(true)
-    }
-
-    const onClickReview = () => {
-        setIsplogging(false)
+    const onChangeComment = (e) => {
+        setComment(e.target.value)
+        console.log(comment)
     }
 
     const limitedContent = content.length > 100 ? `${content.slice(0, 200)}...더 보기` : content; // 100자로 제한
@@ -81,7 +73,10 @@ const CommunityFeed = () => {
         <div className='main-font'>
             <Container >
                 <Title>
-                    <Word>누구누구님</Word>
+                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                        <Profile src={profile} />
+                        <Word>누구누구님</Word>
+                    </div>
                     <div style={{ alignSelf: "flex-end", color: "#999999", fontWeight: "bolder" }}>. . .</div>
                 </Title>
                 <Content>
@@ -100,11 +95,32 @@ const CommunityFeed = () => {
                     </Listsbottom>
                 </Content>
                 <Commentinput>
-                <Commentbox
-                    placeholder='댓글을 입력하세요.'
-                />
-                <FontAwesomeIcon icon={faLocationArrow} style={{ color: "#cccccc", fontSize: "35px", marginTop:"8px", marginRight:"20px", cursor:"pointer"}} />
+                    <Commentbox
+                        placeholder='댓글을 입력하세요.'
+                        onChange={onChangeComment}
+                        maxLength={100}
+                    />
+                    <FontAwesomeIcon icon={faLocationArrow} style={{ color: "#cccccc", fontSize: "35px", marginTop: "8px", marginRight: "20px", cursor: "pointer" }} />
                 </Commentinput>
+                <Comments>
+                    <Comtitle>
+                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                        <Profile src={profile} />
+                        <Word>누구누구님</Word>
+                    </div>
+                        <div style={{ alignSelf: "flex-end", color: "#999999", fontWeight: "bolder" }}>. . .</div>
+                    </Comtitle>
+                    <Content>
+                        <Comcontent>
+                            {newcomment}
+                        </Comcontent>
+                        <Listsbottom>
+                            <Comdate>
+                                날짜
+                            </Comdate>
+                        </Listsbottom>
+                    </Content>
+                </Comments>
             </Container>
         </div>
 

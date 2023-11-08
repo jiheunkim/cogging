@@ -26,13 +26,14 @@ const SignUp = () => {
 
     try {
       if (email.trim() !== '' && password.trim() !== '') {
-        const response = await axios.post('http://localhost:8080/api/members/login', {
+        const response = await axios.post('https://983d-39-125-96-44.ngrok-free.app/api/members/login', {
           email: email,
           password: password,
         });
 
         if (response.status === 200) {
           navigate('/');
+          localStorage.setItem('token', response.data.token);
           console.log('login success', response.data);
         } else {
           console.error('login fail');

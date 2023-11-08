@@ -64,7 +64,7 @@ const Register = () => {
       };
 
       // 회원가입 요청 보내기
-      const response = await axios.post('http://localhost:8080/api/members/signup', userData);
+      const response = await axios.post('https://983d-39-125-96-44.ngrok-free.app/api/members/signup', userData);
 
       // 회원가입 성공 시 리다이렉트 또는 다른 작업 수행
       if (response.status === 200) {

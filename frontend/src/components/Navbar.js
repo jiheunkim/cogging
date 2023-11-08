@@ -1,7 +1,5 @@
 import React, { useState, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import { auth, signOut } from "../firebase-config";
-// import { onAuthStateChanged } from "firebase/auth";
 import './Navbar.css';
 
 function Navbar() {
@@ -13,8 +11,11 @@ function Navbar() {
     
     const navigate = useNavigate(); // useHistory 훅 사용
 
+    const insertedToken = localStorage.getItem('token');
     const handleClick = () => setClick(!click) ;
     const closeMobileMenu = () => setClick(false);
+
+    console.log('insertedToken', insertedToken)
 
     // 화면 크기에 따라서 버튼이 보이고 안보이도록 설정
     const showButton = () => {
@@ -30,18 +31,12 @@ function Navbar() {
     useEffect(() => {
         showButton();
 
-        // Firebase Authentication의 로그인 상태를 관찰하고 사용자 이름을 가져옴
-        // const unsubscribe = onAuthStateChanged(auth, (user) => {
-        //   if (user) {
-        //     setLoggedIn(true);
-        //     setUserName(user.displayName || ''); // 사용자 이름 가져오기
-        //   } else {
-        //     setLoggedIn(false);
-        //     setUserName('');
-        //   }
-        // });
-
-        // return () => unsubscribe();
+        // 로그인 상태를 관찰하고 사용자 이름을 가져옴
+        if (insertedToken) {
+          setLoggedIn(true);
+        } else {
+          setLoggedIn(false);
+        }
     }, []);
 
     // 링크 클릭 시 activeLink 업데이트
@@ -54,21 +49,14 @@ function Navbar() {
 
     // 로그인 버튼 클릭 시 이벤트 핸들러
     const handleLoginButtonClick = () => {
-      navigate("/sign-up");
-    //   if (loggedIn) {
-    //     signOut(auth) // Firebase Authentication에서 로그아웃
-    //       .then(() => {
-    //         // 로그아웃 성공 시 수행할 작업 (예: 상태 업데이트 등)
-    //         setLoggedIn(false);
-    //         setUserName('');
-    //       })
-    //       .catch((error) => {
-    //         // 로그아웃 실패 시 처리
-    //         console.error('로그아웃 실패:', error);
-    //       });
-    //   } else {
-    //     navigate("/sign-up");
-    //   }
+      if (loggedIn) {
+        // 로그아웃 처리
+        localStorage.removeItem('token');
+        setLoggedIn(false);
+      } else {
+        // 로그인 처리
+        navigate("/sign-up");
+      }
     };
 
 

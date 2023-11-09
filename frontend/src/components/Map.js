@@ -20,7 +20,7 @@ export default function Map() {
 
       // 마커 이미지를 생성하고 색상을 변경
       const markerImage = new kakao.maps.MarkerImage(
-        '/image/icon_location.png',
+        '/image/mapicon_location.png',
         new kakao.maps.Size(24, 35),
       );
   

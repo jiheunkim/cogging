@@ -3,6 +3,7 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import NotFound from './components/pages/NotFound';
 import Home from './components/pages/Home';
 import Mypage from './components/pages/Mypage';
 import SignUp from './components/pages/SignUp';
@@ -33,6 +34,7 @@ function App() {
         <Route path="/plogging-list" element={<PloggingList/>}/>
         <Route path="/community-list" element={<CommunityList/>}/>
         <Route path='/community-feed' element={<CommunityFeed/>}/>
+        <Route path="*" element={<NotFound />}/>
       </Routes>
     </BrowserRouter>
   );

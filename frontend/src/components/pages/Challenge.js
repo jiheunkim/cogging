@@ -18,27 +18,27 @@ function Challenge() {
                     <img
                     className="chg-coin"
                     alt='chg1'
-                    src="/image/chg_ex.png"
+                    src="/image/badge_1.png"
                     />
                     <img
                     className="chg-coin"
                     alt='chg1'
-                    src="/image/chg_ex.png"
+                    src="/image/badge_3.png"
                     />
                     <img
                     className="chg-coin"
                     alt='chg1'
-                    src="/image/chg_ex.png"
+                    src="/image/badge_5.png"
                     />
                     <img
                     className="chg-coin"
                     alt='chg1'
-                    src="/image/chg_ex.png"
+                    src="/image/badge_10.png"
                     />
                     <img
                     className="chg-coin"
                     alt='chg1'
-                    src="/image/chg_ex.png"
+                    src="/image/badge_50.png"
                     />
                 </div>
             </div>
@@ -48,27 +48,17 @@ function Challenge() {
                     <img
                     className="chg-coin"
                     alt='chg2'
-                    src="/image/chg_ex.png"
+                    src="/image/badge_beach_1.png"
                     />
                     <img
                     className="chg-coin"
                     alt='chg2'
-                    src="/image/chg_ex.png"
+                    src="/image/badge_beach_2.png"
                     />
                     <img
                     className="chg-coin"
                     alt='chg2'
-                    src="/image/chg_ex.png"
-                    />
-                    <img
-                    className="chg-coin"
-                    alt='chg2'
-                    src="/image/chg_ex.png"
-                    />
-                    <img
-                    className="chg-coin"
-                    alt='chg2'
-                    src="/image/chg_ex.png"
+                    src="/image/badge_beach_3.png"
                     />
                 </div>
             </div>
@@ -78,27 +68,17 @@ function Challenge() {
                     <img
                     className="chg-coin"
                     alt='chg3'
-                    src="/image/chg_ex.png"
+                    src="/image/badge_mt_1.png"
                     />
                     <img
                     className="chg-coin"
                     alt='chg3'
-                    src="/image/chg_ex.png"
+                    src="/image/badge_mt_2.png"
                     />
                     <img
                     className="chg-coin"
                     alt='chg3'
-                    src="/image/chg_ex.png"
-                    />
-                    <img
-                    className="chg-coin"
-                    alt='chg3'
-                    src="/image/chg_ex.png"
-                    />
-                    <img
-                    className="chg-coin"
-                    alt='chg3'
-                    src="/image/chg_ex.png"
+                    src="/image/badge_mt_3.png"
                     />
                 </div>
             </div>
@@ -108,27 +88,47 @@ function Challenge() {
                     <img
                     className="chg-coin"
                     alt='chg4'
-                    src="/image/chg_ex.png"
+                    src="/image/badge_park_1.png"
                     />
                     <img
                     className="chg-coin"
                     alt='chg4'
-                    src="/image/chg_ex.png"
+                    src="/image/badge_park_2.png"
                     />
                     <img
                     className="chg-coin"
                     alt='chg4'
-                    src="/image/chg_ex.png"
+                    src="/image/badge_park_3.png"
+                    />
+                </div>
+            </div>
+            <div className="white-box">
+                <label htmlFor="chg5">플로깅 마스터</label>
+                <div className='flex justify-start ml-10 mr-10'>
+                    <img
+                    className="chg-coin"
+                    alt='chg5'
+                    src="/image/badge_seoul.png"
                     />
                     <img
                     className="chg-coin"
-                    alt='chg4'
-                    src="/image/chg_ex.png"
+                    alt='chg5'
+                    src="/image/badge_gyeonggi.png"
                     />
                     <img
                     className="chg-coin"
-                    alt='chg4'
-                    src="/image/chg_ex.png"
+                    alt='chg5'
+                    src="/image/badge_busan.png"
+                    />
+                    <img
+                    className="chg-coin"
+                    alt='chg5'
+                    src="/image/badge_jeju.png"
+                    />
+                    <img
+                    className="chg-coin"
+                    alt='chg5'
+                    src="/image/badge_gwd.png"
                     />
                 </div>
             </div>

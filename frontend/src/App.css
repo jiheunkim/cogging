@@ -25,6 +25,10 @@
   font-family: "PretendardVariable";
   src: url("./font/PretendardVariable.ttf");
 }
+@font-face {
+  font-family: "Jalnan";
+  src: url("./font/Jalnan.ttf");
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -107,6 +111,13 @@
 
 .main-font {
   font-family: 'PretendardVariable';
+}
+
+.title-font {
+  font-family: 'Jalnan';
+  font-size: 40px;
+  text-align: center;
+  color: #1CC500;
 }
 
 .register-box-container {

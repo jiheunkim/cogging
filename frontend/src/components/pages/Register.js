@@ -13,11 +13,31 @@ const Register = () => {
   const [checkedPassword, setCheckedPassword] = useState('');
   const [profile, setProfile] = useState(1);
   const [errorMessage, setErrorMessage] = useState('');
+  const [nicknameErrorMessage, setNicknameErrorMessage] = useState('');
+  const [isNicknameAvailable, setIsNicknameAvailable] = useState(false);
 
   const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+  };
+
+  const handleCheckEmail = async (e) => {
+    try {
+      const emailData = {
+        email: email,
+      };
+
+      const response = await axios.post('http://15.164.226.31:8080/api/check-email', emailData);
+
+      if (response.status === 200) {
+        console.log('이메일 중복확인', response.data);
+      } else {
+        console.error('이메일 중복확인 실패');
+      }
+    } catch (error) {
+      console.error('이메일 중복확인 실패:', error);
+    }
   };
 
   const handlePasswordChange = (e) => {
@@ -30,6 +50,32 @@ const Register = () => {
 
   const handleNameChange = (e) => {
     setNickname(e.target.value);
+  };
+
+  const handleCheckName = async (e) => {
+    try {
+      const nicknameData = {
+        nickname: nickname,
+      };
+
+      const response = await axios.post('http://15.164.226.31:8080/api/check-nickname', nicknameData);
+
+      if (response.status === 200) {
+        console.log('닉네임 중복확인', response.data);
+
+        if (response.data.available) {
+          setIsNicknameAvailable(true);
+          setNicknameErrorMessage('사용 가능한 닉네임입니다.');
+        } else {
+          setIsNicknameAvailable(false);
+          setNicknameErrorMessage('중복된 닉네임입니다.');
+        }
+      } else {
+        console.error('닉네임 중복확인 실패');
+      }
+    } catch (error) {
+      console.error('닉네임 중복확인 실패:', error);
+    }
   };
 
   const handleProfileImageSelect = (imageNumber) => {
@@ -64,7 +110,7 @@ const Register = () => {
       };
 
       // 회원가입 요청 보내기
-      const response = await axios.post('https://20ab-39-125-96-44.ngrok-free.app/api/members/signup', userData);
+      const response = await axios.post('http://15.164.226.31:8080/api/members/signup', userData);
 
       // 회원가입 성공 시 리다이렉트 또는 다른 작업 수행
       if (response.status === 200) {
@@ -86,54 +132,54 @@ const Register = () => {
         <div className="register-box-container w-full bg-white rounded-lg md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <form className="space-y-4 md:space-y-5" onSubmit={handleSubmit}>
-              <div>
+              <div className='relative'>
                 <input type="email" name="email" id="email" value={email} onChange={handleEmailChange}
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="이메일" required="" />
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="이메일" required="" />
+                <button
+                    className="absolute right-3 top-3 button-sm-style"
+                    onClick={handleCheckEmail}>중복확인
+                </button>
               </div>
-              <div>
-                <input type="text" name="nickname" id="nickname" value={nickname} onChange={handleNameChange}
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="닉네임" required="" />
+              <div className='relative'>
+                <input
+                  type="text"
+                  name="nickname"
+                  id="nickname"
+                  value={nickname}
+                  onChange={handleNameChange}
+                  maxLength={10}  // 최대 10자까지 입력 가능
+                  className={`bg-gray-50 border border-gray-300 text-gray-800 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+                  placeholder="닉네임"
+                  required=""
+                />
+                <p
+                  className={`text-sm ${
+                    isNicknameAvailable ? 'text-green-500' : 'text-red-500'
+                  } ml-2 mt-1`}
+                >
+                  {nicknameErrorMessage || '10자 이내로 입력해주세요.'}
+                </p>
+                <button
+                    className="absolute right-3 top-3 button-sm-style"
+                    onClick={handleCheckName}>중복확인
+                </button>
               </div>
               <div>
                 <input type="password" name="password" id="password" value={password} onChange={handlePasswordChange} placeholder="비밀번호"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
+                <p
+                  className="text-gray-500 sm:text-sm ml-2 mt-1">
+                  영문, 숫자를 조합하여 6~20자로 입력해주세요.
+                </p>
               </div>
               <div>
                 <input type="password" name="checkedPassword" id="checkedPassword" placeholder="비밀번호 확인" value={checkedPassword} onChange={handleConfirmPasswordChange}
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
-                {/* 에러 메시지 표시 */}
-                {errorMessage && <ErrorMessage message={errorMessage} />}
+                {/* {errorMessage && <ErrorMessage message={errorMessage} />} */}
               </div>
               <br></br>
               <div>
                 <label htmlFor="profile" className="block mb-4 text-m font-medium text-gray-900 dark:text-white">프로필 선택</label>
-                {/* <div className='flex justify-center ml-1 mr-1'>
-                  <img
-                    className="mx-auto w-1/5 mr-1"
-                    alt='profile_1'
-                    src="/image/profile_1_select.png"
-                  />
-                  <img
-                    className="mx-auto w-1/5 mr-1"
-                    alt='profile_2'
-                    src="/image/profile_2.png"
-                  />
-                  <img
-                    className="mx-auto w-1/5 mr-1"
-                    alt='profile_3'
-                    src="/image/profile_3.png"
-                  />
-                  <img
-                    className="mx-auto w-1/5 mr-1"
-                    alt='profile_4'
-                    src="/image/profile_4.png"
-                  />
-                  <img
-                    className="mx-auto w-1/5"
-                    alt='profile_5'
-                    src="/image/profile_5.png"
-                  />
-                </div> */}
                 <div className='flex justify-center ml-1 mr-1'>
                   {Array.from({ length: 5 }, (_, index) => (
                     <img
@@ -154,7 +200,7 @@ const Register = () => {
                 </div>
                 <div className="ml-3 text-sm">
                   <label htmlFor="terms" className="font-light text-gray-500 dark:text-gray-300">
-                      I accept the <a className="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Terms and Conditions</a></label>
+                      코깅의 <a className="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">이용약관</a>에 동의합니다.</label>
                 </div>
               </div>
               <button type="submit" className="relative button-style">코깅 시작하기</button>

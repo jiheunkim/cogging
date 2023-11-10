@@ -26,7 +26,7 @@ const SignUp = () => {
 
     try {
       if (email.trim() !== '' && password.trim() !== '') {
-        const response = await axios.post('https://983d-39-125-96-44.ngrok-free.app/api/members/login', {
+        const response = await axios.post('https://20ab-39-125-96-44.ngrok-free.app/api/members/login', {
           email: email,
           password: password,
         });

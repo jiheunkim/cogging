@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../../App.css';
 import {
@@ -8,6 +8,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 
@@ -20,38 +21,41 @@ const CommunityList = () => {
     const navigate = useNavigate();
     const [showFullContent, setShowFullContent] = useState(false); // 추가
 
+    const token = localStorage.getItem('token')
+
+
 
 
     const navigateToWrite = () => {
         navigate('/community-write');
     };
 
-    // const postfeed = async () => {
-    //     try {
-    //         const response = await Api.post('',{
-    //             : title,
-    //             : content 
-    //         });
-    //         console.log(response.data);
-    //         alert('게시되었습니다.');
-    //     } catch (error) {
-    //         alert('업로드에 실패했습니다.')
-    //         console.error(error)
-    //     }
+    const getfeed = async () => {
+        try {
+            const response = await axios.get('https://20ab-39-125-96-44.ngrok-free.app/api/community/list');
+            console.log(response.data);
+            console.log('글 목록.');
+        } catch (error) {
+            alert('글 목록 불러오기에 실패했습니다.')
+            console.error(error)
+        }
 
-    // };
+    };
 
-    // const getUser = async () => {
-    //     try{
-    //         const response = await Api.get('');
-    //         setUserData(response.data);
-    //         console.log(userData)
-    //     }
-    //         catch(error){
-    //             console.log('유저 정보 가져오기 실패')
-    //             console.error(error);   
-    //         }
-    //     }
+    const getUser = async () => {
+        try{
+            const response = await axios.get('https://983d-39-125-96-44.ngrok-free.app/member', {
+                "X-AUTH-TOKEN": token,
+            });
+            console.log("성공")
+            setUserData(response.data);
+            console.log(userData)
+        }
+            catch(error){
+                console.log('유저 정보 가져오기 실패')
+                console.error(error);   
+            }
+        }
 
     const onChangeTitle = (e) => {
         setTitle(e.target.value)
@@ -71,9 +75,10 @@ const CommunityList = () => {
 
     const limitedContent = content.length > 150 ? `${content.slice(0, 200)}...더 보기` : content; // 100자로 제한
 
-    // useEffect(() => {
-    //     getUser();
-    // },[])
+    useEffect(() => {
+        getUser();
+        getfeed();
+    },[])
 
     return (
         <div className='main-font'>

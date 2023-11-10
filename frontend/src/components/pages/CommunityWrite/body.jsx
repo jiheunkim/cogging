@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../../../App.css';
 import {
     Container, Title, Word, Content, PostButton, Titleinput,
@@ -15,25 +16,50 @@ const CommunityWrite = () => {
     const [comcontent, setComcontent] = useState("")
     const [userData, setUserData] = useState([]);
 
+    const token = localStorage.getItem('token')
+    
 
-    // const postfeed = async () => {
-    //     try {
-    //         const response = await Api.post('',{
-    //             title : comtitle,
-    //             content : comcontent 
-    //         });
-    //         console.log(response.data);
-    //         alert('게시되었습니다.');
-    //     } catch (error) {
-    //         alert('업로드에 실패했습니다.')
-    //         console.error(error)
-    //     }
+    const postfeed = async () => {
+        try {
+            const response = await axios.post('https://20ab-39-125-96-44.ngrok-free.app/api/community/create',{
+                title: comtitle,
+                content: comcontent,
+            }, {
+                'Content-Type' : 'application/json',
+                "X-AUTH-TOKEN": token, 
+            });
+            console.log(response.data);
+            alert('게시되었습니다.');
+        } catch (error) {
+            alert('업로드에 실패했습니다.')
+            console.error(error)
+        }
 
-    // };
+    };
 
+    
+    const getUser = async () => {
+        try {
+            const response = await axios.get('https://20ab-39-125-96-44.ngrok-free.app/api/member', {
+                headers: {
+                    "X-AUTH-TOKEN": token
+                },
+                'withCredentials': true
+            });
+            console.log("성공");
+            setUserData(response.data);
+            console.log(userData);
+        } catch (error) {
+            console.log('유저 정보 가져오기 실패');
+            console.error(error);
+        }
+    };
+    
+    
     // const getUser = async () => {
     //     try{
-    //         const response = await Api.get('');
+    //         const response = await axios.get('https://983d-39-125-96-44.ngrok-free.app/members/list');
+    //         console.log("전체 유저 성공")
     //         setUserData(response.data);
     //         console.log(userData)
     //     }
@@ -51,16 +77,16 @@ const CommunityWrite = () => {
         setComcontent(e.target.value)
     }
 
-    // useEffect(() => {
-    //     getUser();
-    // },[])
+    useEffect(() => {
+        getUser();
+    },[])
 
 
     return (
         <Container className='main-font'>
             <Title>
                 <Word>커뮤니티</Word>
-                <PostButton>글 올리기</PostButton>
+                <PostButton onClick={postfeed}>글 올리기</PostButton>
             </Title>
             <Content>
                 <Info>

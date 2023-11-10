@@ -20,3 +20,49 @@
     color: #fff;
     font-weight: 700;
   }
+
+  .button-sm-style {
+    width: 20%;
+    display: flex;
+    justify-content: end;
+    border-radius: 0.5rem;
+    background-color: #1CC500;
+    padding: 0.6rem 1.3rem;
+    font-family: 'PretendardVariable';
+    font-size: 13px;
+    font-weight: 400; 
+    line-height: 1.5;
+    color: #ededed;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    transition: color 0.2s, font-weight 0.2s;
+    cursor: pointer;
+  }
+  
+  .button-sm-style:hover {
+    color: #fff;
+    font-weight: 500;
+  }
+
+  .button-hero-style {
+    width: 40%;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    border-radius: 0.5rem;
+    background-color: #1CC500;
+    padding: 0.7rem 1rem;
+    font-family: 'PretendardVariable';
+    font-size: 32px;
+    font-weight: 600; 
+    line-height: 2.2;
+    color: #ededed;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    transition: color 0.2s, font-weight 0.2s;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+  }
+  
+  .button-hero-style:hover {
+    color: #fff;
+    font-weight: 700;
+  }

@@ -17,12 +17,11 @@ export const Container = styled.div`
 
 export const Title = styled.div`
     display: flex;
-    border-bottom: solid #cccccc;
     height: 100px;
     width: 100%;
     justify-content: space-between;
-    
-     
+    margin-bottom: 20px;
+    border-bottom: solid #cccccc;
 `
 
 export const Word = styled.div`
@@ -49,54 +48,67 @@ export const Content = styled.div`
     //height: 85%;
     display: flex;
     width: 100%;
+    flex-direction: column;
+    border: solid 2px #cccccc;
+    border-radius: 10px;
+    margin: 2% 0% 0% 0%;
+    height: 180px;
+    cursor: pointer;
 `
-export const Info = styled.div`
+
+export const Liststitle = styled.div`
     display: flex;
     width: 100%;
-    margin: 2% 0% 0% 0%;
-    flex-direction: column;
+    padding: 20px 30px 0px 30px;
+    font-size: 17px;
+    height: 50px;
+    font-weight: bold
 `
-
-export const Titleinput = styled.input`
-    border: solid 2px #cccccc;
-    border-radius: 10px;
+export const Listscontent = styled.div`
+    display: flex;
+    width: 100%;
     //width: 100%;
-    height: 60px;
+    /* height: 150px; */
+    font-size: 12px;
+    height: 70px;
+    padding: 10px 30px 0px 30px;
+    
+`
+
+export const Listsbottom = styled.div`
+    display: flex;
+    width: 100%;
+    padding: 25px 30px 0px 30px;
+    height: 40px;
+    font-size: 12px;
+    flex-direction: row;
+`
+export const Commentnum = styled.div`
+    display: flex;
+    width: 60px;
+    border-right: solid thin #999999;
+    height: 16px;
+    color: #38AF00;
+
+
+`
+export const Date = styled.div`
     padding-left: 20px;
-    margin: 2% 0% 2% 0%;
-    outline: none;
-
-
+    height: 16px;
+    color: #999999;
 `
-export const Maininput = styled.textarea.attrs({ maxLength: 300 })`
-    border: solid 2px #cccccc;
-    border-radius: 10px;
-    height: 250px; /* 높이 설정 */
-    width: 100%; /* 너비 설정 */
-    margin: 2% 0% 2% 0%;
-    padding: 20px;
-    white-space: pre-wrap; /* 줄 바꿈 관련 */
-    word-wrap: break-word; /* 긴 단어 줄 바꿈 */
-    overflow-wrap: break-word; /* word-wrap 대체 구문 */
-    resize: none; /* 크기 조정 비활성화 */
-    outline: none;
 
-`
+
+
+
+
 
 export const Placename = styled.div`
-    height: 60px;
-    padding-top: 20px;
-    font-size: 20px;
-`
-export const MaxLengthText = styled.span`
-    position: absolute;
-    bottom: 30px;
-    right: 10px;
-    color: #999999;
-    font-size: 12px; /* 원하는 사이즈로 변경 */
-`
+    display: flex;
+    height: 80px;
+    padding-top: 40px;
+    font-size: 25px;
+    align-self: flex-end;
+    margin: 5px;
 
-export const MainTextarea = styled.div`
-    position: relative;
-    width: 100%;
 `

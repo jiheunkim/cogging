@@ -13,6 +13,8 @@ import PloggingWrite from './components/pages/PloggingWrite/body';
 import ReviewWrite from './components/pages/ReviewWrite/body';
 import CommunityWrite from './components/pages/CommunityWrite/body';
 import PloggingList from './components/pages/PloggingList/body';
+import CommunityList from './components/pages/CommunityList/body';
+import CommunityFeed from './components/pages/CommunityFeed/body';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Route path="/review-write" element={<ReviewWrite/>}/>
         <Route path="/community-write" element={<CommunityWrite/>}/>
         <Route path="/plogging-list" element={<PloggingList/>}/>
+        <Route path="/community-list" element={<CommunityList/>}/>
+        <Route path='/community-feed' element={<CommunityFeed/>}/>
       </Routes>
     </BrowserRouter>
   );

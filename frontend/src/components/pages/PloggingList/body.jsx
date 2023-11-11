@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import '../../../App.css';
 import {
     Container, Title, Content, PostButton, Lists,
@@ -72,9 +73,28 @@ const PloggingList = () => {
     }
 
     console.log(isplogging)
-    // useEffect(() => {
-    //     getUser();
-    // },[])
+    
+    
+    useEffect(() => {
+        // getUser();
+
+        // 플로깅 목록 불러오기
+        axios.get(`https://f8ee-1-224-68-15.ngrok-free.app/api/plogging/list`, 
+        { id: place.id },
+        {
+            withCredentials: true,
+            headers: {
+                'Access-Control-Allow-Credentials': true,
+                'ngrok-skip-browser-warning': true,
+            },
+        }).then(function (response) {
+            console.log("plogging-list 반환", response.data);
+            const data = response.data;
+
+        }).catch(function (error) {
+            console.error("오류 발생", error);
+        });
+    },[])
 
     return (
         <div className='main-font'>
@@ -108,7 +128,7 @@ const PloggingList = () => {
                             <Icon>
                                 <FontAwesomeIcon icon={faLocationDot} />
                             </Icon>
-                            <div>정동진 해수욕장</div>
+                            <div>{place.name}</div>
                         </Placename>
                         <PostButton onClick={navigateToReview}>글쓰기</PostButton>
                     </Title>

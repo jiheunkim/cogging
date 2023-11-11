@@ -40,6 +40,26 @@ function PlaceCard() {
         });
     };       
 
+    const getTop10List = (e) => {
+        axios.get(`https://f8ee-1-224-68-15.ngrok-free.app/api/place/top`, {
+            withCredentials: true,
+            headers: {
+                'Access-Control-Allow-Credentials': true,
+                'ngrok-skip-browser-warning': true,
+            },
+        }).then(function (response) {
+            console.log("map 정보 반환", response.data);
+            const data = response.data; // response.json() 대신 response.data를 사용
+            setPlaces(data);
+            setTitle(`오늘의 추천 플로깅 장소`);
+
+            // 데이터를 받아온 후에 Map 컴포넌트에 데이터를 전달
+            mapscript(data);
+        }).catch(function (error) {
+            console.error("오류 발생", error);
+        });
+    };      
+
     // 마커 클릭 시 호출될 함수
     const handleMarkerClick = (markerInfo) => {
         // 여기서 markerInfo를 이용하여 마커에 대한 정보를 처리
@@ -48,12 +68,16 @@ function PlaceCard() {
         setSearch(markerInfo.name);
         setTitle("");
         setPlaces([markerInfo]);
+    };
 
+    const navigatePloggingList = (placeInfo) => {
         // 선택한 지역 정보를 PloggingList 컴포넌트로 전달
-        navigate('/plogging-list', { state: { place: markerInfo } });
+        navigate('/plogging-list', { state: { place: placeInfo } });
     };
 
     useEffect(() => {
+        getTop10List();
+
         if (search !== '') {
             // axios.get(`https://f8ee-1-224-68-15.ngrok-free.app/api/place/search?keyword=${search}`, {
             // withCredentials: true,
@@ -74,7 +98,7 @@ function PlaceCard() {
             //     // 항상 실행
             // });
         }
-    }, [search]);
+    }, []);
 
     return (
         <>
@@ -115,7 +139,7 @@ function PlaceCard() {
                                         className="w-1/10"
                                         src="/image/icon_location.png"
                                         />
-                                        <p className='ml-2 mt-0.5'>{place.name}</p>
+                                        <p className='ml-2 mt-0.5' onClick={() => navigatePloggingList(place)}>{place.name}</p>
                                     </div>
                                     <div>
                                         <img
@@ -127,8 +151,9 @@ function PlaceCard() {
                                     <img
                                     className="mt-3"
                                     src={`/image/place_ex1.png`}
+                                    onClick={() => navigatePloggingList(place)}
                                     />
-                                    <p className='mt-2'>{place.address}</p>
+                                    <p className='mt-2' onClick={() => navigatePloggingList(place)}>{place.address}</p>
                                     {index !== places.length - 1 && (
                                     <hr className="my-3 border-t border-gray-300" />
                                     )}

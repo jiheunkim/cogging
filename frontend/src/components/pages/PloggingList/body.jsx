@@ -22,11 +22,11 @@ const PloggingList = () => {
     const { place } = location.state;
 
     const navigateToPlogging = () => {
-        navigate('/plogging-write');
+        navigate('/plogging-write', { state: { place: place } });
     };
 
     const navigateToReview = () => {
-        navigate('/review-write');
+        navigate('/review-write', { state: { place: place } });
     };
 
     // const postfeed = async () => {

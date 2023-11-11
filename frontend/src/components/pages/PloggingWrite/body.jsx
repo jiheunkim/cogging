@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../../../App.css';
 import {
   Container, Title, Word, Content, PostButton, Titleinput,
@@ -29,6 +29,9 @@ const PloggingWrite = () => {
   const [finish, setFinish] = useState("")
   const [userData, setUserData] = useState([]);
   const [date, setDate] = useState([]);
+
+  const location = useLocation();
+  const { place } = location.state;
 
 
 
@@ -203,7 +206,7 @@ const PloggingWrite = () => {
             <Icon>
               <FontAwesomeIcon icon={faLocationDot} />
             </Icon>
-            <div>정동진 해수욕장</div>
+            <div>{place.name}</div>
           </Placename>
           <Placeinputs>
             <Startinput

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../../../App.css';
 import {
     Container, Title, Word, Content, PostButton, Titleinput,
@@ -15,6 +15,9 @@ const Reviewwrite = () => {
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
     const [userData, setUserData] = useState([]);
+
+    const location = useLocation();
+    const { place } = location.state;
 
     // const postfeed = async () => {
     //     try {
@@ -67,7 +70,7 @@ const Reviewwrite = () => {
                         <Icon>
                             <FontAwesomeIcon icon={faLocationDot} />
                         </Icon>
-                        <div>정동진 해수욕장</div>
+                        <div>{place.name}</div>
                     </Placename>
                     <Titleinput
                         placeholder='제목을 입력하세요.'

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../../../App.css';
+import axios from 'axios';
 import {
   Container, Title, Word, Content, PostButton, Titleinput,
   Info, Place, Maininput, Timeinput, Peopleinput, Chatinput, Placename, Placeinputs,
@@ -18,39 +19,75 @@ import { faComment } from '@fortawesome/free-solid-svg-icons';
 const PloggingWrite = () => {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
-  const [year, setYear] = useState("")
-  const [month, setMonth] = useState("")
-  const [day, setDay] = useState("")
-  const [ampm, setAmpm] = useState("")
-  const [time, setTime] = useState("")
+  const [year, setYear] = useState("2023")
+  const [month, setMonth] = useState("10")
+  const [day, setDay] = useState("15")
+  const [time, setTime] = useState("10")
   const [number, setNumber] = useState(10)
   const [chat, setChat] = useState("")
   const [start, setStart] = useState("")
   const [finish, setFinish] = useState("")
   const [userData, setUserData] = useState([]);
-  const [date, setDate] = useState([]);
+
+  const location = useLocation();
+  const { place } = location.state;
+  console.log(place.id)
+
+  const token = localStorage.getItem('token')
+  const navigate = useNavigate();
+
+  // const date = new Date(year, month - 1, day, time);
+
+  const getUser = async () => {
+    try {
+        const response = await axios.get('https://f8ee-1-224-68-15.ngrok-free.app/api/member',{
+            headers: {
+                'Content-Type': 'application/json',
+                "X-AUTH-TOKEN": token
+            },
+            withCredentials: true,
+            'ngrok-skip-browser-warning': true,
+        });
+        console.log("성공");
+        console.log(response.data);
+    } catch (error) {
+        console.log('유저 정보 가져오기 실패');
+        console.error(error);
+    }
+};
 
 
 
-  //   const postfeed = async () => {
-  //     try {
-  //         const response = await Api.post('',{
-  //             : title,
-  //             : content,
-  //             : time,
-  //             : number,
-  //             : chat,
-  //             : start,
-  //             : finish
-  //         });
-  //         console.log(response.data);
-  //         alert('게시되었습니다.');
-  //     } catch (error) {
-  //         alert('업로드에 실패했습니다.')
-  //         console.error(error)
-  //     }
 
-  // };
+  const postfeed = async () => {
+    const date = new Date(year, month - 1, day, time);
+    try {
+        const response = await axios.post('https://f8ee-1-224-68-15.ngrok-free.app/api/plogging/create',{
+          placeId: place.id,
+          title: title,
+          content: content,
+          ploggingDate: date,
+          maximumPeople: number,
+          departures: start,
+          arrivals: finish,
+          chatUrl: chat,
+        }, {
+            headers: {
+            'Content-Type' : 'application/json',
+            "X-AUTH-TOKEN": token, 
+            },
+            withCredentials: true,
+
+        });
+        navigate('/plogging-list');
+        console.log(response.data);
+        alert('게시되었습니다.');
+    } catch (error) {
+        alert('업로드에 실패했습니다.')
+        console.error(error)
+    }
+
+};
 
   // const getUser = async () => {
   //     try{
@@ -69,13 +106,13 @@ const PloggingWrite = () => {
   //   setDate(year)
   // }
 
-  const onClickbtn = (year, month, day) => {
-    const newDate = new Date(year, month - 1, day); // Month starts from 0 (January)
-    console.log(newDate); // Output the new Date object
+  // const onClickbtn = (year, month, day) => {
+  //   const newDate = new Date(year, month - 1, day); // Month starts from 0 (January)
+  //   console.log(newDate); // Output the new Date object
   
-    // Now, you can set this newDate as your 'date' state using 'setDate'
-    setDate(newDate);
-  }
+  //   // Now, you can set this newDate as your 'date' state using 'setDate'
+  //   setDate(newDate);
+  // }
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value)
@@ -125,12 +162,16 @@ const PloggingWrite = () => {
     setFinish(e.target.value)
   }
 
+  useEffect(() => {
+    getUser();
+  },[])
+
 
   return (
     <Container className='main-font'>
       <Title>
         <Word>같이줍깅</Word>
-        <PostButton onClick={onClickbtn}>글 올리기</PostButton>
+        <PostButton onClick={postfeed}>글 올리기</PostButton>
       </Title>
       <Content>
         <Info>
@@ -203,7 +244,7 @@ const PloggingWrite = () => {
             <Icon>
               <FontAwesomeIcon icon={faLocationDot} />
             </Icon>
-            <div>정동진 해수욕장</div>
+            <div>{place.name}</div>
           </Placename>
           <Placeinputs>
             <Startinput

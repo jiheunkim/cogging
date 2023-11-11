@@ -21,12 +21,15 @@ const PloggingList = () => {
     const location = useLocation();
     const { place } = location.state;
 
+    const token = localStorage.getItem('token')
+
+
     const navigateToPlogging = () => {
-        navigate('/plogging-write');
+        navigate('/plogging-write', { state: { place: place } });
     };
 
     const navigateToReview = () => {
-        navigate('/review-write');
+        navigate('/review-write', { state: { place: place } });
     };
 
     // const postfeed = async () => {
@@ -44,17 +47,24 @@ const PloggingList = () => {
 
     // };
 
-    // const getUser = async () => {
-    //     try{
-    //         const response = await Api.get('');
-    //         setUserData(response.data);
-    //         console.log(userData)
-    //     }
-    //         catch(error){
-    //             console.log('유저 정보 가져오기 실패')
-    //             console.error(error);   
-    //         }
-    //     }
+    const getUser = async () => {
+        try {
+            const response = await axios.get('https://f8ee-1-224-68-15.ngrok-free.app/api/member',{
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-AUTH-TOKEN": token
+                },
+                withCredentials: true,
+                'ngrok-skip-browser-warning': true,
+            });
+            console.log("성공");
+            console.log(response.data);
+        } catch (error) {
+            console.log('유저 정보 가져오기 실패');
+            console.error(error);
+        }
+    };
+    
 
     const onChangeTitle = (e) => {
         setTitle(e.target.value)
@@ -76,17 +86,18 @@ const PloggingList = () => {
     
     
     useEffect(() => {
-        // getUser();
+        getUser();
 
         // 플로깅 목록 불러오기
         axios.get(`https://f8ee-1-224-68-15.ngrok-free.app/api/plogging/list`, 
         { id: place.id },
         {
-            withCredentials: true,
             headers: {
                 'Access-Control-Allow-Credentials': true,
                 'ngrok-skip-browser-warning': true,
             },
+            withCredentials: true,
+
         }).then(function (response) {
             console.log("plogging-list 반환", response.data);
             const data = response.data;

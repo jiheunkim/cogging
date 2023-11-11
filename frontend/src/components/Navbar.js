@@ -12,11 +12,11 @@ function Navbar() {
     
     const navigate = useNavigate(); // useHistory 훅 사용
 
-    const insertedToken = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const handleClick = () => setClick(!click) ;
     const closeMobileMenu = () => setClick(false);
 
-    console.log('insertedToken', insertedToken)
+    console.log('insertedToken', token)
 
     // 화면 크기에 따라서 버튼이 보이고 안보이도록 설정
     const showButton = () => {
@@ -28,12 +28,35 @@ function Navbar() {
         }
     };
 
+    const switchMyPage = () => {
+      navigate("/mypage");
+    }
+
+    const getUserNickname = async () => {
+      try {
+          const response = await axios.get(`https://f8ee-1-224-68-15.ngrok-free.app/api/member`,{
+              headers: {
+                  'Content-Type': 'application/json',
+                  "X-AUTH-TOKEN": token
+              },
+              withCredentials: true,
+              'ngrok-skip-browser-warning': true,
+          });
+          console.log("성공");
+          console.log(response.data);
+          setUserName(response.data.nickname);
+      } catch (error) {
+          console.log('유저 정보 가져오기 실패');
+          console.error(error);
+      }
+  };
+
     // SIGNUP버튼이 사이즈가 줄어들면 없어지도록 함
     useEffect(() => {
         showButton();
 
         // 로그인 상태를 관찰하고 사용자 이름을 가져옴
-        if (insertedToken) {
+        if (token) {
           setLoggedIn(true);
 
           // try {
@@ -57,38 +80,11 @@ function Navbar() {
 
 
           //회원 정보 반환 테스트
-          axios.get("http://15.164.226.31:8080/api/members/list", {
-            withCredentials: true,
-            headers: {
-              'Access-Control-Allow-Credentials': true,
-              'ngrok-skip-browser-warning': true,
-            }
-          })
-          .then(function (response) {
-              // response
-              console.log("회원 정보 반환", response.data)
-          }).catch(function (error) {
-              // 오류발생시 실행
-          }).then(function() {
-              // 항상 실행
-          });
+          // getUser();
 
           //닉네임 정보 반환
-          const response = axios.get('http://15.164.226.31:8080/api/member', {
-            withCredentials: true,
-            headers: {
-              'Access-Control-Allow-Credentials': true,
-              'ngrok-skip-browser-warning': true,
-              'X-AUTH-TOKEN': insertedToken,
-            }
-          });
-
-          if (response.status === 200) {
-            setUserName(response.data.nickname) 
-            console.log('userInfo success', response.data);
-          } else {
-            console.error('userInfo fail');
-          }
+          getUserNickname();
+          
         } else {
           setLoggedIn(false);
         }
@@ -157,12 +153,18 @@ function Navbar() {
                 </li>
               </ul>
               {loggedIn && (
-                <div className="nav-username">{userName}
-                <span className='nav-welcome'>님 환영합니다.</span>&nbsp;&nbsp;
+                <div className="nav-username" onClick={switchMyPage} style={{ display: 'flex', alignItems: 'center' }}>
+                    <img
+                        className="mr-2 h-6 sm:h-7 nav-username"
+                        alt='profile'
+                        src="/image/profile_1.png"
+                    />
+                    {userName}
+                    <span className='nav-welcome'>님</span>&nbsp;&nbsp;
                 </div>
               )}
               {button && (
-                <button className="nav-links" onClick={handleLoginButtonClick}>
+                <button className="nav-login ml-5" onClick={handleLoginButtonClick}>
                   {loggedIn ? '로그아웃' : '로그인'}
                 </button>
               )}

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../../../App.css';
@@ -28,6 +29,26 @@ const PloggingWrite = () => {
   const [start, setStart] = useState("")
   const [finish, setFinish] = useState("")
   const [userData, setUserData] = useState([]);
+
+
+
+  //   const postfeed = async () => {
+  //     try {
+  //         const response = await Api.post('',{
+  //             : title,
+  //             : content,
+  //             : time,
+  //             : number,
+  //             : chat,
+  //             : start,
+  //             : finish
+  //         });
+  //         console.log(response.data);
+  //         alert('게시되었습니다.');
+  //     } catch (error) {
+  //         alert('업로드에 실패했습니다.')
+  //         console.error(error)
+  //     }
 
   const location = useLocation();
   const { place } = location.state;

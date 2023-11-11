@@ -1,3 +1,4 @@
+
 import React, { useState,useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../../../App.css';
@@ -20,6 +21,7 @@ const Reviewwrite = () => {
 
     const location = useLocation();
     const { place } = location.state;
+
 
     const token = localStorage.getItem('token')
     const navigate = useNavigate();

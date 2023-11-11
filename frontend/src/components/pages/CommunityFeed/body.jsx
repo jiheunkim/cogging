@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../../App.css';
+import axios from 'axios';
 import {
     Container, Title, Content, Liststitle, Listscontent, Listsbottom, Comcontent,
     Comdate, Comtitle, Word, Commentnum, Date, Commentbox, Commentinput, Comments, Profile
@@ -9,6 +10,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 import profile from "../../profile.jpg";
+import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
 
 
 
@@ -24,6 +28,27 @@ const CommunityFeed = () => {
     const [isplogging, setIsplogging] = useState(true);
     const navigate = useNavigate();
     const [showFullContent, setShowFullContent] = useState(false); // 추가
+    const [isEditMode, setIsEditMode] = useState(false);
+    const location = useLocation();
+    const id = { ...location.state };
+    console.log("글 아이디", id.id);
+    const [feed, setFeed] = useState([])
+    const [nickname, setNickname] = useState("")
+    const [author, setAuthor] = useState([]);
+
+
+    const token = localStorage.getItem('token')
+
+
+
+
+    const toggleEditMode = () => {
+        setIsEditMode(!isEditMode);
+    };
+
+    const navigateToFix = () => {
+        navigate('/community-fix');
+    };
 
 
 
@@ -31,32 +56,64 @@ const CommunityFeed = () => {
         navigate('/community-write');
     };
 
-    // const postfeed = async () => {
-    //     try {
-    //         const response = await Api.post('',{
-    //             : title,
-    //             : content 
-    //         });
-    //         console.log(response.data);
-    //         alert('게시되었습니다.');
-    //     } catch (error) {
-    //         alert('업로드에 실패했습니다.')
-    //         console.error(error)
-    //     }
 
-    // };
+    const formattedDate = (inputDate) => {
+        try {
+            const date = inputDate.replace('T', ' ').substring(0, inputDate.length - 10);
+            return date;
+        } catch (error) {
+            console.error('Error parsing inputDate:', error);
+            return 'Invalid Date';
+        }
+    };
 
-    // const getUser = async () => {
-    //     try{
-    //         const response = await Api.get('');
-    //         setUserData(response.data);
-    //         console.log(userData)
-    //     }
-    //         catch(error){
-    //             console.log('유저 정보 가져오기 실패')
-    //             console.error(error);   
-    //         }
-    //     }
+    const getfeed = async () => {
+        try {
+            const response = await axios.post('https://f8ee-1-224-68-15.ngrok-free.app/api/community', {
+                id: id.id,
+            }, {
+                withCredentials: true,
+                'ngrok-skip-browser-warning': true,
+
+            });
+            setFeed(response.data)
+            setAuthor(response.data.author.nickname)
+            console.log("피드", author);
+        } catch (error) {
+            alert('업로드에 실패했습니다.')
+            console.error(error)
+        }
+
+    };
+
+
+    const getUser = async () => {
+        try {
+            const response = await axios.get('https://f8ee-1-224-68-15.ngrok-free.app/api/member', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-AUTH-TOKEN": token
+                },
+                withCredentials: true,
+                'ngrok-skip-browser-warning': true,
+            });
+            console.log("성공");
+            console.log(response.data);
+        } catch (error) {
+            console.log('유저 정보 가져오기 실패');
+            console.error(error);
+        }
+    };
+
+    const [userImages, setUserImages] = useState([
+        '/image/profile_1,png',
+        '/image/profile_2,png',
+        '/image/profile_3,png',
+        '/image/profile_4,png',
+        '/image/profile_5,png',
+    ]);
+
+
 
     const onChangeComment = (e) => {
         setComment(e.target.value)
@@ -65,33 +122,32 @@ const CommunityFeed = () => {
 
     const limitedContent = content.length > 100 ? `${content.slice(0, 200)}...더 보기` : content; // 100자로 제한
 
-    // useEffect(() => {
-    //     getUser();
-    // },[])
+    useEffect(() => {
+        getUser();
+        getfeed();
+    }, [])
 
     return (
         <div className='main-font'>
             <Container >
                 <Title>
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
-                        <Profile src={profile} />
-                        <Word>누구누구님</Word>
+                        {/* <Profile src={userImages[1]} /> */}
+                        <Word>{author}</Word>
                     </div>
-                    <div style={{ alignSelf: "flex-end", color: "#999999", fontWeight: "bolder" }}>. . .</div>
+                    <div on onClick={navigateToFix} style={{ alignSelf: "flex-end", color: "#999999", fontWeight: "bolder", cursor: "pointer" }}>. . .</div>
                 </Title>
                 <Content>
-                    <Liststitle>{title}</Liststitle>
+                    <Liststitle>{feed.title}</Liststitle>
                     <Listscontent>
-                        {content}
+                        {feed.content}
                     </Listscontent>
                     <Listsbottom>
                         <Commentnum>
                             <FontAwesomeIcon icon={faComment} style={{ color: "38AF00", marginRight: "5px", marginTop: "3px" }} />
-                            <div>개수</div>
+                            <div>{feed.comments}</div>
                         </Commentnum>
-                        <Date>
-                            날짜
-                        </Date>
+                        <Date>{formattedDate(feed.createdAt)}</Date>
                     </Listsbottom>
                 </Content>
                 <Commentinput>
@@ -104,11 +160,11 @@ const CommunityFeed = () => {
                 </Commentinput>
                 <Comments>
                     <Comtitle>
-                    <div style={{ display: 'flex', flexDirection: 'row' }}>
-                        <Profile src={profile} />
-                        <Word>누구누구님</Word>
-                    </div>
-                        <div style={{ alignSelf: "flex-end", color: "#999999", fontWeight: "bolder" }}>. . .</div>
+                        <div style={{ display: 'flex', flexDirection: 'row' }}>
+                            <Profile src={profile} />
+                            <Word>누구누구님</Word>
+                        </div>
+                        <div style={{ alignSelf: "flex-end", color: "#999999", fontWeight: "bolder", cursor: "pointer" }}>. . .</div>
                     </Comtitle>
                     <Content>
                         <Comcontent>

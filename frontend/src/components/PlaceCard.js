@@ -68,14 +68,16 @@ function PlaceCard() {
         setSearch(markerInfo.name);
         setTitle("");
         setPlaces([markerInfo]);
+    };
 
+    const navigatePloggingList = (placeInfo) => {
         // 선택한 지역 정보를 PloggingList 컴포넌트로 전달
-        navigate('/plogging-list', { state: { place: markerInfo } });
+        navigate('/plogging-list', { state: { place: placeInfo } });
     };
 
     useEffect(() => {
         getTop10List();
-        
+
         if (search !== '') {
             // axios.get(`https://f8ee-1-224-68-15.ngrok-free.app/api/place/search?keyword=${search}`, {
             // withCredentials: true,
@@ -96,7 +98,7 @@ function PlaceCard() {
             //     // 항상 실행
             // });
         }
-    }, [search]);
+    }, []);
 
     return (
         <>
@@ -137,7 +139,7 @@ function PlaceCard() {
                                         className="w-1/10"
                                         src="/image/icon_location.png"
                                         />
-                                        <p className='ml-2 mt-0.5'>{place.name}</p>
+                                        <p className='ml-2 mt-0.5' onClick={() => navigatePloggingList(place)}>{place.name}</p>
                                     </div>
                                     <div>
                                         <img
@@ -149,8 +151,9 @@ function PlaceCard() {
                                     <img
                                     className="mt-3"
                                     src={`/image/place_ex1.png`}
+                                    onClick={() => navigatePloggingList(place)}
                                     />
-                                    <p className='mt-2'>{place.address}</p>
+                                    <p className='mt-2' onClick={() => navigatePloggingList(place)}>{place.address}</p>
                                     {index !== places.length - 1 && (
                                     <hr className="my-3 border-t border-gray-300" />
                                     )}

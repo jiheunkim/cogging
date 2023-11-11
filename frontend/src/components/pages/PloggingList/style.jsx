@@ -110,6 +110,7 @@ export const Lists = styled.div`
     //width: 100%;
     height: 150px;
     padding: 20px;
+    margin-bottom: 20px;
 
 `
 

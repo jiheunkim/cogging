@@ -117,12 +117,14 @@ const PloggingList = () => {
                                 <Plogging1 onClick={onClickPlogging}>같이줍깅</Plogging1>
                                 <Review1 onClick={onClickReview}>장소후기</Review1>
                             </Switch>
+                            {postlist.map((post, index) => (
                             <Lists>
-                                <Liststitle>제목</Liststitle>
+                                <Liststitle>{post.title}</Liststitle>
                                 <Listscontent>
-                                    내용
+                                    {post.content}
                                 </Listscontent>
                             </Lists>
+                            ))}
 
                         </Info>
                     </Content>

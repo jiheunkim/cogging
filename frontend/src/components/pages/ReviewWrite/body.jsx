@@ -22,6 +22,7 @@ const Reviewwrite = () => {
     const location = useLocation();
     const { place } = location.state;
 
+
     const token = localStorage.getItem('token')
     const navigate = useNavigate();
 
@@ -39,7 +40,7 @@ const Reviewwrite = () => {
                 withCredentials: true,
 
             });
-            navigate('/review-list');
+            navigate('/plogging-list', { state: { place: place } });
             console.log(response.data);
             alert('게시되었습니다.');
         } catch (error) {

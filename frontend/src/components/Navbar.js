@@ -155,11 +155,16 @@ function Navbar() {
               {loggedIn && (
                 <div className="nav-username" onClick={switchMyPage} style={{ display: 'flex', alignItems: 'center' }}>
                     <img
-                        className="mr-2 h-6 sm:h-7 nav-username"
+                        className="mr-2 h-6 sm:h-7"
                         alt='profile'
                         src="/image/profile_1.png"
                     />
+                    {/* <div style={{width: '70px'}}> */}
+                    <div className='flex w-full'>
                     {userName}
+                    </div>
+                    {/* {userName} */}
+                    {/* </div> */}
                     <span className='nav-welcome'>님</span>&nbsp;&nbsp;
                 </div>
               )}

@@ -88,6 +88,7 @@
   }
 
   .nav-username {
+    width: 100px;
     font-size: 17px;
     font-weight: 600;
   }

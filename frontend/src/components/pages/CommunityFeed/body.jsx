@@ -126,12 +126,13 @@ const CommunityFeed = () => {
         getfeed();
     }, [])
 
+
     return (
         <div className='main-font'>
             <Container >
                 <Title>
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
-                        {/* <Profile src={userImages[1]} /> */}
+                        <Profile src="/image/profile_1.png" />
                         <Word>{author}</Word>
                     </div>
                     <div on onClick={navigateToFix} style={{ alignSelf: "flex-end", color: "#999999", fontWeight: "bolder", cursor: "pointer" }}>. . .</div>
@@ -157,7 +158,7 @@ const CommunityFeed = () => {
                     />
                     <FontAwesomeIcon icon={faLocationArrow} style={{ color: "#cccccc", fontSize: "35px", marginTop: "8px", marginRight: "20px", cursor: "pointer" }} />
                 </Commentinput>
-                <Comments>
+                {/* <Comments>
                     <Comtitle>
                         <div style={{ display: 'flex', flexDirection: 'row' }}>
                             <Profile src={profile} />
@@ -175,7 +176,7 @@ const CommunityFeed = () => {
                             </Comdate>
                         </Listsbottom>
                     </Content>
-                </Comments>
+                </Comments> */}
             </Container>
         </div>
 

@@ -16,6 +16,7 @@ import CommunityWrite from './components/pages/CommunityWrite/body';
 import PloggingList from './components/pages/PloggingList/body';
 import CommunityList from './components/pages/CommunityList/body';
 import CommunityFeed from './components/pages/CommunityFeed/body';
+import CommunityFix from './components/pages/CommunityFix/body';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/community-list" element={<CommunityList/>}/>
         <Route path='/community-feed' element={<CommunityFeed/>}/>
         <Route path="*" element={<NotFound />}/>
+        <Route path="/community-fix" element = {<CommunityFix/>}/>
       </Routes>
     </BrowserRouter>
   );

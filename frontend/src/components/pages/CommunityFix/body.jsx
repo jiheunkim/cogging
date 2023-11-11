@@ -9,33 +9,25 @@ import {
 } from "./style";
 
 
-axios.defaults.withCredentials = true;
 
 
-
-const CommunityWrite = () => {
+const CommunityFix = () => {
     const [comtitle, setComtitle] = useState("")
     const [comcontent, setComcontent] = useState("")
     const [userData, setUserData] = useState([]);
 
     const token = localStorage.getItem('token')
-    const navigate = useNavigate();
-
+    
 
     const postfeed = async () => {
         try {
-            const response = await axios.post('https://f8ee-1-224-68-15.ngrok-free.app/api/community/create',{
+            const response = await axios.post('https://20ab-39-125-96-44.ngrok-free.app/api/community/create',{
                 title: comtitle,
                 content: comcontent,
             }, {
-                headers: {
                 'Content-Type' : 'application/json',
                 "X-AUTH-TOKEN": token, 
-                },
-                withCredentials: true,
-
             });
-            navigate('/community-list');
             console.log(response.data);
             alert('게시되었습니다.');
         } catch (error) {
@@ -44,30 +36,38 @@ const CommunityWrite = () => {
         }
 
     };
-    console.log("글쓰기에서 유저 토큰", token)
+
     
     const getUser = async () => {
         try {
-            const response = await axios.get('https://f8ee-1-224-68-15.ngrok-free.app/api/member',{
+            const response = await axios.get('https://20ab-39-125-96-44.ngrok-free.app/api/member', {
                 headers: {
-                    'Content-Type': 'application/json',
                     "X-AUTH-TOKEN": token
                 },
-                withCredentials: true,
-                'ngrok-skip-browser-warning': true,
+                'withCredentials': true
             });
             console.log("성공");
-            console.log(response.data);
+            setUserData(response.data);
+            console.log(userData);
         } catch (error) {
             console.log('유저 정보 가져오기 실패');
             console.error(error);
         }
     };
-
     
-
-
-
+    
+    // const getUser = async () => {
+    //     try{
+    //         const response = await axios.get('https://983d-39-125-96-44.ngrok-free.app/members/list');
+    //         console.log("전체 유저 성공")
+    //         setUserData(response.data);
+    //         console.log(userData)
+    //     }
+    //         catch(error){
+    //             console.log('유저 정보 가져오기 실패')
+    //             console.error(error);   
+    //         }
+    //     }
 
     const onChangeTitle = (e) => {
         setComtitle(e.target.value)
@@ -110,4 +110,4 @@ const CommunityWrite = () => {
     );
 }
 
-export default CommunityWrite;
+export default CommunityFix;

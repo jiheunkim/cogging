@@ -28,7 +28,7 @@ const Register = () => {
         email: email,
       };
 
-      const response = await axios.post('http://15.164.226.31:8080/api/check-email', emailData);
+      const response = await axios.post('https://f8ee-1-224-68-15.ngrok-free.app/api/check-email', emailData);
 
       if (response.status === 200) {
         console.log('이메일 중복확인', response.data);
@@ -58,7 +58,7 @@ const Register = () => {
         nickname: nickname,
       };
 
-      const response = await axios.post('http://15.164.226.31:8080/api/check-nickname', nicknameData);
+      const response = await axios.post('https://f8ee-1-224-68-15.ngrok-free.app/api/check-nickname', nicknameData);
 
       if (response.status === 200) {
         console.log('닉네임 중복확인', response.data);
@@ -110,7 +110,7 @@ const Register = () => {
       };
 
       // 회원가입 요청 보내기
-      const response = await axios.post('http://15.164.226.31:8080/api/members/signup', userData);
+      const response = await axios.post('https://f8ee-1-224-68-15.ngrok-free.app/api/members/signup', userData);
 
       // 회원가입 성공 시 리다이렉트 또는 다른 작업 수행
       if (response.status === 200) {

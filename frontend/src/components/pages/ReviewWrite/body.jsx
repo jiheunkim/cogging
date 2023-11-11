@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../../../App.css';
 import {
@@ -24,24 +24,33 @@ const Reviewwrite = () => {
     const token = localStorage.getItem('token')
     const navigate = useNavigate();
 
-    // const postfeed = async () => {
-    //     try {
-    //         const response = await Api.post('',{
-    //             : title,
-    //             : content 
-    //         });
-    //         console.log(response.data);
-    //         alert('게시되었습니다.');
-    //     } catch (error) {
-    //         alert('업로드에 실패했습니다.')
-    //         console.error(error)
-    //     }
+    const postfeed = async () => {
+        try {
+            const response = await axios.post('https://f8ee-1-224-68-15.ngrok-free.app/api/review/create', {
+                title: title,
+                content: content,
+                placeId: place.id,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-AUTH-TOKEN": token,
+                },
+                withCredentials: true,
 
-    // };
+            });
+            navigate('/review-list');
+            console.log(response.data);
+            alert('게시되었습니다.');
+        } catch (error) {
+            alert('업로드에 실패했습니다.')
+            console.error(error)
+        }
+
+    };
 
     const getUser = async () => {
         try {
-            const response = await axios.get('https://f8ee-1-224-68-15.ngrok-free.app/api/member',{
+            const response = await axios.get('https://f8ee-1-224-68-15.ngrok-free.app/api/member', {
                 headers: {
                     'Content-Type': 'application/json',
                     "X-AUTH-TOKEN": token
@@ -67,13 +76,13 @@ const Reviewwrite = () => {
 
     useEffect(() => {
         getUser();
-      },[])
+    }, [])
 
     return (
         <Container className='main-font'>
             <Title>
                 <Word>장소후기</Word>
-                <PostButton>글 올리기</PostButton>
+                <PostButton onClick={postfeed}>글 올리기</PostButton>
             </Title>
             <Content>
                 <Info>

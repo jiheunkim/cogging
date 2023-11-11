@@ -20,6 +20,8 @@ const PloggingList = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { place } = location.state;
+    const [postlist, setPostlist] = useState([]);
+
 
     const token = localStorage.getItem('token')
 
@@ -32,20 +34,6 @@ const PloggingList = () => {
         navigate('/review-write', { state: { place: place } });
     };
 
-    // const postfeed = async () => {
-    //     try {
-    //         const response = await Api.post('',{
-    //             : title,
-    //             : content 
-    //         });
-    //         console.log(response.data);
-    //         alert('게시되었습니다.');
-    //     } catch (error) {
-    //         alert('업로드에 실패했습니다.')
-    //         console.error(error)
-    //     }
-
-    // };
 
     const getUser = async () => {
         try {
@@ -82,31 +70,32 @@ const PloggingList = () => {
         setIsplogging(false)
     }
 
-    console.log(isplogging)
+    console.log(place.id)
     
+    const getfeed = async () => {
+        try {
+            const response = await axios.post('https://f8ee-1-224-68-15.ngrok-free.app/api/plogging/list', {
+                id: place.id,
+            }, {
+                headers: {
+                    'ngrok-skip-browser-warning': true,
+                },
+            });
+            setPostlist(response.data);
+            console.log("리스트성공", postlist);
+        } catch (error) {
+            alert('글 목록 불러오기에 실패했습니다.');
+            console.error(error);
+        }
+    };
+    
+    
+
     
     useEffect(() => {
         getUser();
-
-        // 플로깅 목록 불러오기
-        axios.get(`https://f8ee-1-224-68-15.ngrok-free.app/api/plogging/list`, 
-        { id: place.id },
-        {
-            headers: {
-                'Access-Control-Allow-Credentials': true,
-                'ngrok-skip-browser-warning': true,
-            },
-            withCredentials: true,
-
-        }).then(function (response) {
-            console.log("plogging-list 반환", response.data);
-            const data = response.data;
-
-        }).catch(function (error) {
-            console.error("오류 발생", error);
-        });
-    },[])
-
+        getfeed();
+    }, [])
     return (
         <div className='main-font'>
             {isplogging ? (

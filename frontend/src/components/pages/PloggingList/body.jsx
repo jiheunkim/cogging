@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import '../../../App.css';
 import {
-    Container, Title, Content, PostButton, Lists,
+    Container, Title, Content, PostButton, Lists, Liststitle, Listscontent,
     Info, Icon, Placename, Switch, Plogging1, Review1, Plogging2, Review2
 } from "./style";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -115,7 +115,12 @@ const PloggingList = () => {
                                 <Plogging1 onClick={onClickPlogging}>같이줍깅</Plogging1>
                                 <Review1 onClick={onClickReview}>장소후기</Review1>
                             </Switch>
-                            <Lists>플로깅 목록</Lists>
+                            <Lists>
+                                <Liststitle>제목</Liststitle>
+                                <Listscontent>
+                                    내용
+                                </Listscontent>
+                            </Lists>
 
                         </Info>
                     </Content>
@@ -138,8 +143,12 @@ const PloggingList = () => {
                                 <Plogging2 onClick={onClickPlogging}>같이줍깅</Plogging2>
                                 <Review2 onClick={onClickReview}>장소후기</Review2>
                             </Switch>
-                            <Lists>리뷰 목록</Lists>
-
+                            <Lists>
+                                <Liststitle>제목</Liststitle>
+                                <Listscontent>
+                                    내용
+                                </Listscontent>
+                            </Lists>
                         </Info>
                     </Content>
                 </Container>

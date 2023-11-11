@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../../../App.css';
 import axios from 'axios';
 import {
@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 import profile from "../../profile.jpg";
-import { useLocation } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 

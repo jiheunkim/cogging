@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useState,useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../../../App.css';
 import {
@@ -7,6 +8,8 @@ import {
 } from "./style";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+
 
 
 
@@ -18,6 +21,10 @@ const Reviewwrite = () => {
 
     const location = useLocation();
     const { place } = location.state;
+
+
+    const token = localStorage.getItem('token')
+    const navigate = useNavigate();
 
     // const postfeed = async () => {
     //     try {
@@ -34,17 +41,23 @@ const Reviewwrite = () => {
 
     // };
 
-    // const getUser = async () => {
-    //     try{
-    //         const response = await Api.get('');
-    //         setUserData(response.data);
-    //         console.log(userData)
-    //     }
-    //         catch(error){
-    //             console.log('유저 정보 가져오기 실패')
-    //             console.error(error);   
-    //         }
-    //     }
+    const getUser = async () => {
+        try {
+            const response = await axios.get('https://f8ee-1-224-68-15.ngrok-free.app/api/member',{
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-AUTH-TOKEN": token
+                },
+                withCredentials: true,
+                'ngrok-skip-browser-warning': true,
+            });
+            console.log("성공");
+            console.log(response.data);
+        } catch (error) {
+            console.log('유저 정보 가져오기 실패');
+            console.error(error);
+        }
+    };
 
     const onChangeTitle = (e) => {
         setTitle(e.target.value)
@@ -54,9 +67,9 @@ const Reviewwrite = () => {
         setContent(e.target.value)
     }
 
-    // useEffect(() => {
-    //     getUser();
-    // },[])
+    useEffect(() => {
+        getUser();
+      },[])
 
     return (
         <Container className='main-font'>

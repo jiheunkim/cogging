@@ -22,6 +22,7 @@ const CommunityWrite = () => {
     const navigate = useNavigate();
 
 
+
     const postfeed = async () => {
         try {
             const response = await axios.post('https://f8ee-1-224-68-15.ngrok-free.app/api/community/create',{

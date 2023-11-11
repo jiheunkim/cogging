@@ -40,6 +40,26 @@ function PlaceCard() {
         });
     };       
 
+    const getTop10List = (e) => {
+        axios.get(`https://f8ee-1-224-68-15.ngrok-free.app/api/place/top`, {
+            withCredentials: true,
+            headers: {
+                'Access-Control-Allow-Credentials': true,
+                'ngrok-skip-browser-warning': true,
+            },
+        }).then(function (response) {
+            console.log("map 정보 반환", response.data);
+            const data = response.data; // response.json() 대신 response.data를 사용
+            setPlaces(data);
+            setTitle(`오늘의 추천 플로깅 장소`);
+
+            // 데이터를 받아온 후에 Map 컴포넌트에 데이터를 전달
+            mapscript(data);
+        }).catch(function (error) {
+            console.error("오류 발생", error);
+        });
+    };      
+
     // 마커 클릭 시 호출될 함수
     const handleMarkerClick = (markerInfo) => {
         // 여기서 markerInfo를 이용하여 마커에 대한 정보를 처리
@@ -54,6 +74,8 @@ function PlaceCard() {
     };
 
     useEffect(() => {
+        getTop10List();
+        
         if (search !== '') {
             // axios.get(`https://f8ee-1-224-68-15.ngrok-free.app/api/place/search?keyword=${search}`, {
             // withCredentials: true,

@@ -30,11 +30,16 @@ const PloggingWrite = () => {
   const [userData, setUserData] = useState([]);
   const [date, setDate] = useState([]);
 
+
+
+
+
   const location = useLocation();
   const { place } = location.state;
   console.log(place.id)
   const token = localStorage.getItem('token')
   const navigate = useNavigate();
+
 
 
 
@@ -59,7 +64,7 @@ const PloggingWrite = () => {
             withCredentials: true,
 
         });
-        navigate('/plogging-list');
+        navigate('/plogging-list', { state: { place: place } });
         console.log(response.data);
         alert('게시되었습니다.');
     } catch (error) {

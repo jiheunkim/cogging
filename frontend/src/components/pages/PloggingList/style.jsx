@@ -47,6 +47,24 @@ export const Info = styled.div`
     margin: 2% 0% 0% 0%;
     flex-direction: column;
 `
+export const Liststitle = styled.div`
+    display: flex;
+    width: 100%;
+    padding: 10px 10px 0px 10px;
+    font-size: 17px;
+    height: 50px;
+    font-weight: bold
+`
+export const Listscontent = styled.div`
+    display: flex;
+    width: 100%;
+    //width: 100%;
+    /* height: 150px; */
+    font-size: 12px;
+    height: 70px;
+    padding: 10px 10px 0px 10px;
+    
+`
 
 export const Switch  = styled.div`
     width: 170px;

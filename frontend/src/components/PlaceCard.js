@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { mapscript } from './Map';
 import Map from './Map';
 import axios from 'axios';
@@ -12,6 +13,8 @@ function PlaceCard() {
     const [places, setPlaces] = useState([]);
     const [info, setInfo] = useState('undefined');
     const [title, setTitle] = useState('오늘의 추천 플로깅 장소');
+
+    const navigate = useNavigate();
 
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
@@ -45,6 +48,9 @@ function PlaceCard() {
         setSearch(markerInfo.name);
         setTitle("");
         setPlaces([markerInfo]);
+
+        // 선택한 지역 정보를 PloggingList 컴포넌트로 전달
+        navigate('/plogging-list', { state: { place: markerInfo } });
     };
 
     useEffect(() => {

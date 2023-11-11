@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../../../App.css';
 import {
     Container, Title, Content, PostButton, Lists,
@@ -17,7 +17,8 @@ const PloggingList = () => {
     const [userData, setUserData] = useState([]);
     const [isplogging, setIsplogging] = useState(true);
     const navigate = useNavigate();
-
+    const location = useLocation();
+    const { place } = location.state;
 
     const navigateToPlogging = () => {
         navigate('/plogging-write');
@@ -84,7 +85,7 @@ const PloggingList = () => {
                             <Icon>
                                 <FontAwesomeIcon icon={faLocationDot} />
                             </Icon>
-                            <div>정동진 해수욕장</div>
+                            <div>{place.name}</div>
                         </Placename>
                         <PostButton onClick={navigateToPlogging}>글쓰기</PostButton>
                     </Title>

@@ -124,3 +124,14 @@
   max-width: 500px; /* 원하는 최대 가로 길이로 조정 */
   margin: 0 auto; /* 중앙 정렬을 위해 좌우 여백 자동 조정 */
 }
+
+.scroll-box {
+  max-height: 800px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  -ms-overflow-style: none;
+}
+
+.scroll-box::-webkit-scrollbar {
+  width: 5px;
+}

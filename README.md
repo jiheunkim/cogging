@@ -15,6 +15,7 @@
 ![간지톤 16조 발표자료_page-0007](https://github.com/2023-Ganzithon/Team16/assets/80433455/3c54ef0f-a3a8-483a-8de2-407861931335)
 ![간지톤 16조 발표자료_page-0008](https://github.com/2023-Ganzithon/Team16/assets/80433455/15c3cf64-e300-46da-8c4a-7acb8b739ebc)
 ![간지톤 16조 발표자료_page-0009](https://github.com/2023-Ganzithon/Team16/assets/80433455/4c80aa0c-31ed-45a2-8b6d-720d0c5b3b04)
+![db](https://github.com/2023-Ganzithon/Team16/assets/80433455/c5877857-e395-4a6f-ac53-76a244c7747c)
 <br><br>
 
 ## ⏰ 프로젝트 기간

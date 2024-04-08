@@ -16,7 +16,7 @@
 ![간지톤 16조 발표자료_page-0008](https://github.com/2023-Ganzithon/Team16/assets/80433455/15c3cf64-e300-46da-8c4a-7acb8b739ebc)
 ![간지톤 16조 발표자료_page-0009](https://github.com/2023-Ganzithon/Team16/assets/80433455/4c80aa0c-31ed-45a2-8b6d-720d0c5b3b04)
 ![db](https://github.com/2023-Ganzithon/Team16/assets/80433455/c5877857-e395-4a6f-ac53-76a244c7747c)
-<br><br>
+<br><br><br>
 
 ## ⏰ 프로젝트 기간
 2023.10.28 ~ 2023.11.12
@@ -28,6 +28,10 @@
   <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
   <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
 </div>
+<br><br><br>
+
+## 👩🏻‍💻 배운 점
+- [x] 카카오 지도 사용하여 백엔드로부터 전달받은 위도, 경도 위치에 마커 표시 및 클릭 이벤트
 <br><br><br>
 
 ## 💡 시연 영상
